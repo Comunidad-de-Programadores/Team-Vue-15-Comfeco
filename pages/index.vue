@@ -1,10 +1,10 @@
 <template>
   <div class="inicio">
-    <Cabecera />
+    <Header />
     <Animated>
       <Login />
     </Animated>
-    <Pie />
+    <Footer />
   </div>
 </template>
 

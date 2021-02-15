@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import '../assets/css/Card.css';
+import '../assets/css/Login.css';
 
 export default {};
 </script>

@@ -12,7 +12,6 @@ export default {
     return {};
   },
   mounted() {
-    const colors = ['#2196f3', '#e01e63', '#ffeb3b', '#74ff1d'];
     const logos = ['bg-vue', 'bg-react', 'bg-angular', 'bg-svelte'];
 
     function createSquare() {
@@ -27,11 +26,7 @@ export default {
       square.style.left = Math.random() * innerWidth + 'px';
 
       const bg = logos[Math.floor(Math.random() * logos.length)];
-      //square.style.background = bg
       square.className += bg;
-      //square.style.backgroundImage = "url('~/assets/logo.png')"
-      //square.style.backgroundImage = bg
-
       section.appendChild(square);
 
       setTimeout(() => {
