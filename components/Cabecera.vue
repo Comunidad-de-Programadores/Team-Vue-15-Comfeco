@@ -1,6 +1,6 @@
 <template>
   <section id="Cabecera">
-    <img src="../assets/logos/Logo-comfeco.png" alt="logo">
+    <img src="../assets/logos/logo.svg" alt="logo">
     <button v-if="true">Login</button>
   </section>
 </template>
