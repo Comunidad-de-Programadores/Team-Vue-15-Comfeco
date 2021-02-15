@@ -3,20 +3,19 @@
   padding: 0;
   box-sizing: border-box;
 }
-.Animated-bg{
+.animated-bg{
   position: relative;
   height: 100vh;
-  background: linear-gradient(135deg, rgba(125,93,0,1) 0%, rgba(146,90,83,1) 40%, rgba(52,10,94,1) 100%);;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.Animated-bg span{
+.animated-bg span{
   position: absolute;
   pointer-events: none;
   display: block;
   animation: animate 5s linear infinite;
-  z-index: 2;
 }
 @keyframes animate{
   0%{
@@ -35,18 +34,18 @@
   }
 }
 .bg-vue{
-  background-image: url('../logos/vue.png');
+  background-image: url('../logos/vue-icon.svg');
   background-size: contain;
 }
 .bg-react{
-  background-image: url('../logos/react.png');
+  background-image: url('../logos/react-icon.svg');
   background-size: contain;
 }
 .bg-angular{
-  background-image: url('../logos/angular.png');
+  background-image: url('../logos/svelte-icon.svg');
   background-size: contain;
 }
 .bg-svelte{
-  background-image: url('../logos/svelte.png');
+  background-image: url('../logos/angular-icon.svg');
   background-size: contain;
 }
