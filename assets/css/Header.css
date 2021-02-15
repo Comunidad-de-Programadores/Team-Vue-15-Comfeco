@@ -1,20 +1,21 @@
-#Cabecera{
+#header{
   position: absolute;
   width: 100%;
-  min-height: 80px;
-  max-height: 120px;
-  background: rgba(255, 255, 255, .2);
-  z-index: 1;
+  min-height: 90px;
+  max-height: 110px;
+  border-bottom: 1px solid rgb(222, 222, 223);
+  background: rgb(255, 255, 255);
+  z-index: 3;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-#Cabecera img{
-  width: 10%;
+#header img{
+  width: 15%;
   height: auto;
   margin: 10px;
 }
-#Cabecera button{
+#header button{
   background: #fff;
   border-radius: 10px;
   padding: 10px;
