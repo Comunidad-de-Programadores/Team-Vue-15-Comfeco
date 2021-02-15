@@ -1,18 +1,17 @@
 <template>
   <div class="Register">
-    <Cabecera />
-    <Animated>
-      <Card2 />
-    </Animated>
-    <Pie />
+    <Header />
+    <Animated> <Register/></Animated>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Animated from '../components/Animated.vue';
-import Cabecera from '../components/Cabecera.vue';
+import Header from '../components/Header.vue';
+import Register from '../components/Register.vue';
 export default {
-  components: { Animated, Cabecera },
+  components: { Animated, Header, Register },
   name: 'Inicio',
   layout: 'none',
 };

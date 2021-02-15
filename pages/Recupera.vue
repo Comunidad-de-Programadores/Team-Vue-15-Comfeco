@@ -1,19 +1,19 @@
 <template>
   <div class="Register">
-    <Cabecera />
+    <Header />
     <Animated>
       <Card3 />
     </Animated>
-    <Pie />
+    <Footer />
   </div>
 </template>
 
 <script>
 import Animated from '../components/Animated.vue';
-import Cabecera from '../components/Cabecera.vue';
+import Header from '../components/Header.vue';
 import Card3 from '../components/Card3.vue';
 export default {
-  components: { Animated, Cabecera, Card3 },
+  components: { Animated, Header, Card3 },
   name: 'Recupera',
   layout: 'none',
 };

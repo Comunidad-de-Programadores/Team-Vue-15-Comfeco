@@ -10,11 +10,15 @@
         type="text"
         placeholder="Correo electrónico"
         v-model="email"
+        :rules="emailRules"
+        required
       ></v-text-field>
       <v-text-field
         type="password"
         placeholder="Contraseña"
         v-model="password"
+        :rules="passwordRules"
+        required
       ></v-text-field>
       <small class="alert" v-if="error">{{ error }}</small>
     </v-form>
@@ -26,7 +30,6 @@
 
 <script>
 import firebase from 'firebase';
-import 'firebase/auth';
 import '../assets/css/Login.css';
 
 export default {
@@ -35,6 +38,8 @@ export default {
       email: '',
       password: '',
       error: '',
+      emailRules: [(v) => !!v || 'El correo electrónico es requerido'],
+      passwordRules: [(v) => !!v || 'La contraseña es requerida'],
     };
   },
   methods: {
@@ -42,7 +47,7 @@ export default {
       try {
         if (this.email != '' && this.password != '') {
           await firebase.auth().signInWithEmailAndPassword(this.email, this.password);
-          this.$router.replace({ name: 'home' });
+          this.$router.push('/home');
         } else {
           if (this.email === '' && this.password === '')
             this.error = 'Debes completar todos los campos.';
@@ -68,9 +73,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.alert {
-  color: red;
-}
-</style>
