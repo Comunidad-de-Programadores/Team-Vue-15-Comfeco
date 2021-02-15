@@ -1,11 +1,10 @@
 <template>
-  <v-card class="card text-center">
+  <v-card class="card text-center" height="480px">
     <v-form class="content">
       <img src="../assets/logos/code-icon.svg" alt="logo comunidad" />
       <div class="switcher">
-        <a href="#">Inicia Sesión</a>
-        |
-        <a href="#">Regístrate</a>
+        <Nuxt-link class="n-link" to="/">Inicia Sesión</Nuxt-link> |
+        <Nuxt-link class="n-link" to="/register">Registrate</Nuxt-link>
       </div>
       <v-text-field
         type="text"
@@ -17,14 +16,11 @@
         placeholder="Contraseña"
         v-model="password"
       ></v-text-field>
-      <a href="/recupera">¿Olvidaste tu contraseña?</a>
+      <small class="alert" v-if="error">{{ error }}</small>
     </v-form>
-    <small class="alert" v-if="error">{{ error.message }}</small>
+
     <button @click="authUser">Ingresar</button>
-    <span id="register"
-      >¿No tienes cuenta?
-      <Nuxt-link class="n-link" to="/register">Registrate</Nuxt-link></span
-    >
+    <a href="/recupera">¿Olvidaste tu contraseña?</a>
   </v-card>
 </template>
 
@@ -44,10 +40,17 @@ export default {
   methods: {
     async authUser() {
       try {
-        const result = await firebase
-          .auth()
-          .signInWithEmailAndPassword(this.email, this.password);
-        this.$router.replace({ name: 'home' });
+        if (this.email != '' && this.password != '') {
+          await firebase.auth().signInWithEmailAndPassword(this.email, this.password);
+          this.$router.replace({ name: 'home' });
+        } else {
+          if (this.email === '' && this.password === '')
+            this.error = 'Debes completar todos los campos.';
+          else {
+            if (this.email === '') this.error = 'El correo electrónico es requerido.';
+            if (this.password === '') this.error = 'La contraseña es requerida.';
+          }
+        }
       } catch (error) {
         console.log(error);
         switch (error.message) {
@@ -57,9 +60,9 @@ export default {
           case 'There is no user record corresponding to this identifier. The user may have been deleted.':
             this.error = 'El usuario no se encuentra registrado';
           default:
+            this.error = error;
             break;
         }
-        this.error = error;
       }
     },
   },
