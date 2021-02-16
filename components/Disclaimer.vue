@@ -32,6 +32,9 @@ export default {};
   margin-top: 60px;
   text-align: left;
 }
+.text h3{
+  margin: 16px 0;
+}
 .card{
   max-width: 900px;
 }
