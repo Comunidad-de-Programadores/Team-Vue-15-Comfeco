@@ -35,7 +35,7 @@
           </v-row>
           <v-row>
             <small>
-              Al registrarte estas aceptando las <b>Politicas de datos y privacidad</b>
+              Al registrarte estas aceptando las <Nuxt-link to="/disclaimer">Politicas de datos y privacidad</Nuxt-link>
             </small>
           </v-row>
           <v-row>
@@ -71,7 +71,7 @@ export default {
       error: '',
       nickRules: [(v) => !!v || 'El nickname es requerido.'],
       emailRules: [(v) => !!v || 'El correo electrónico es requerido'],
-      passwordRules: [(v) => !!v || 'La contraseña es requerida'],
+      passwordRules: [(v) => !!v || 'La contraseña es requerida', (v) => v == this.password || 'La contraseña no coincide'],
       messageConfirm: '',
     };
   },
@@ -110,4 +110,9 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped>
+small{
+  display: inline-block;
+  margin-top: 20px;
+}
+</style>

@@ -1,9 +1,9 @@
 <template>
-  <div class="Register">
+  <div id="Recover">
     <Header />
-    <Animated>
-      <Card3 />
-    </Animated>
+      <Animated>
+        <Recover />
+      </Animated>
     <Footer />
   </div>
 </template>
@@ -11,9 +11,10 @@
 <script>
 import Animated from '../components/Animated.vue';
 import Header from '../components/Header.vue';
-import Card3 from '../components/Card3.vue';
+import Recover from '../components/Recover.vue';
+
 export default {
-  components: { Animated, Header, Card3 },
+  components: { Animated, Header, Recover },
   name: 'Recupera',
   layout: 'none',
 };
