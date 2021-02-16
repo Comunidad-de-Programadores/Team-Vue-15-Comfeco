@@ -1,8 +1,8 @@
 <template>
-  <div id="Register">
-    <Header hasLogin/>
+  <div id="Disclaimer">
+    <Header />
       <Animated>
-        <Register/>
+        <Disclaimer />
       </Animated>
     <Footer />
   </div>
@@ -11,10 +11,11 @@
 <script>
 import Animated from '../components/Animated.vue';
 import Header from '../components/Header.vue';
-import Register from '../components/Register.vue';
+import Disclaimer from '../components/Disclaimer.vue';
+
 export default {
-  components: { Animated, Header, Register },
-  name: 'Inicio',
+  components: { Animated, Header, Disclaimer },
+  name: 'Recupera',
   layout: 'none',
 };
 </script>

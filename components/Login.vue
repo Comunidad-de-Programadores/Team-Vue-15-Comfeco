@@ -24,7 +24,7 @@
     </v-form>
 
     <button @click="authUser">Ingresar</button>
-    <a href="/recupera">¿Olvidaste tu contraseña?</a>
+    <a href="/recover">¿Olvidaste tu contraseña?</a>
   </v-card>
 </template>
 

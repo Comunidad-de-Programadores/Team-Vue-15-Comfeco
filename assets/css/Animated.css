@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
 }
-.animated-bg span{
+.animated-bg > span{
   position: absolute;
   pointer-events: none;
   display: block;

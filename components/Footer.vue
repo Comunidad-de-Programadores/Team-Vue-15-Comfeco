@@ -1,6 +1,7 @@
 <template>
   <section id="footer">
     <h3>¡Inicia el 2022 aceptando el reto!</h3>
+    <nuxt-link to="/disclaimer">Terminos y condiciones</nuxt-link>
     <div class="redes">
       <p>Siguenos en nuetras redes:</p>
       <img src="../assets/logos/facebook.svg" alt="facebook" />
@@ -16,4 +17,8 @@ import '../assets/css/Footer.css';
 export default {};
 </script>
 
-<style></style>
+<style scoped>
+#footer a{
+  color: white;
+}
+</style>
