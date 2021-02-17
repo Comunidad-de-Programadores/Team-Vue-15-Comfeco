@@ -1,0 +1,26 @@
+#header{
+  position: absolute;
+  width: 100%;
+  min-height: 90px;
+  max-height: 110px;
+  border-bottom: 1px solid rgb(222, 222, 223);
+  background: rgb(255, 255, 255);
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: sans-serif;
+}
+#header img{
+  width: 15%;
+  height: auto;
+  margin: 10px;
+}
+#header button{
+  background: #fff;
+  border-radius: 15px;
+  border: 1px solid rgb(222, 222, 223);
+  padding: 10px;
+  margin: 20px;
+  outline: none;
+}
