@@ -29,8 +29,9 @@ const postLogin = (req, res, next) => {
 }
 
 const postRegister = (req, res, next) => {
-  const props = req.body.user
-
+  const props = req.body
+  console.log('postRegister')
+  console.log(props)
   User.findOne({ username: props.username })
     .then(user => {
       if (user) return next(createError({

@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.disable('x-powered-by')
 
 app.use('/', [
-/*   require('./routes/auth_routes'), */
+  require('./routes/auth_routes'),
   require('./routes/user_routes'),
 /*   require('./routes/project_routes') */
 ])

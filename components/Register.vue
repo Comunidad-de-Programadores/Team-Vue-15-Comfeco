@@ -39,7 +39,8 @@
             </small>
           </v-row>
           <v-row>
-            <button class="toRegister" @click="registerUser">Crear una cuenta</button>
+            <!-- <button class="toRegister" @click="registerUser">Crear una cuenta</button> -->
+            <v-btn @click="registerUser">Crear una cuenta</v-btn>
           </v-row>
         </div>
       </v-form>
@@ -77,13 +78,44 @@ export default {
   },
   methods: {
     async registerUser() {
+      console.log('test 0')
+      console.log(this.email)
+      debugger
       if (this.password === this.passwordConfirm) {
         try {
-          await firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
+          console.log('test')
+          console.log(this.email)
+          console.log(this.password)
+          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) => {
+            // Signed in
+            // ...
+            console.log('TEST')
+            console.log('TEST1111111111111111111111')
+            debugger
+          })
+          .catch((error) => {
+            debugger
+            console.log('TEST')
+            console.log('TEST222222222222222222222')
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ..
+          });;
+          console.log('TEST1111')
+          //console.log(response)
+          debugger
+/*           console.log('RESPONSE REGISTER')
+          console.log(response) */
+/*           this.$axios.$post('/user/12345', {
+            name: 'new name'
+          }, {
+            cancelToken: source.token
+          }) */
           this.messageConfirm = 'Fuiste registrado correctamente';
           this.dialog = true;
         } catch (error) {
           console.log(error);
+          debugger
           switch (error.message) {
             case 'Password should be at least 6 characters':
               console.log('AQUI');
@@ -104,6 +136,8 @@ export default {
       }
     },
     pushRoute() {
+      console.log('pushRoute')
+      debugger
       this.$refs.form.reset();
       this.$router.replace({ name: '/' });
     },

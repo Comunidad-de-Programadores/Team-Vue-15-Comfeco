@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node ./server/start.js",
-    "test": "ha ha, no.",
+    "dev": "nodemon ./server/start.js",
     "db:migrate": "npx knex migrate:latest",
     "db:seed": "npx knex seed:run"
   },
