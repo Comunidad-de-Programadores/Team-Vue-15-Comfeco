@@ -50,6 +50,15 @@
       :messageConfirm="messageConfirm"
       v-on:call-function="pushRoute"
     />
+
+    <v-snackbar
+      v-model="showSnackbar"
+      :timeout="timeout"
+    >
+      {{ snackbarText }}
+      <template v-slot:action="{ attrs }">
+      </template>
+    </v-snackbar>
   </v-card>
 </template>
 
@@ -74,6 +83,9 @@ export default {
       emailRules: [(v) => !!v || 'El correo electrónico es requerido'],
       passwordRules: [(v) => !!v || 'La contraseña es requerida', (v) => v == this.password || 'La contraseña no coincide'],
       messageConfirm: '',
+      showSnackbar: false,
+      timeout: 6000,
+      snackbarText: ''
     };
   },
   methods: {
@@ -86,12 +98,26 @@ export default {
           console.log('test')
           console.log(this.email)
           console.log(this.password)
-          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) => {
+          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(async (user) => {
             // Signed in
             // ...
             console.log('TEST')
             console.log('TEST1111111111111111111111')
-            debugger
+             console.log(user)
+             console.log(user.user.uid)
+             
+
+          const temp = await this.$axios.$post('http://localhost:3001/register', {
+            username: this.nick,
+            password: this.password,
+            email: this.email,
+            id_firebase: user.user.uid
+          })
+          console.log('TEST2')
+          console.log(temp)
+          // TODO CHECK IF EVERYTHING IS OK ON THE BACKEND
+          this.showSnackbar = true
+          this.snackbarText = "Registro creado de manera exitosa"
           })
           .catch((error) => {
             debugger
@@ -99,6 +125,8 @@ export default {
             console.log('TEST222222222222222222222')
             var errorCode = error.code;
             var errorMessage = error.message;
+            this.showSnackbar = true
+            this.snackbarText = "Error al registrar"
             // ..
           });;
           console.log('TEST1111')
@@ -116,6 +144,8 @@ export default {
         } catch (error) {
           console.log(error);
           debugger
+          this.showSnackbar = true
+          this.snackbarText = "Error al registrar"
           switch (error.message) {
             case 'Password should be at least 6 characters':
               console.log('AQUI');
