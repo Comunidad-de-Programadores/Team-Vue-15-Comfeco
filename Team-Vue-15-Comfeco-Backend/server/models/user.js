@@ -65,9 +65,28 @@ module.exports = knex => {
       })
   }
 
+  const findNickByFirebaseId = (idFirebase) => {
+    const matchErrorMsg = 'Username or password do not match'
+
+    return knex.select()
+      .from(tableName)
+      .where({ id_firebase: idFirebase})
+      .timeout(guts.timeout)
+      .then(user => {
+        if (!user) throw matchErrorMsg
+        console.log('findNickByFirebaseId')
+        console.log(user)
+        console.log(user[0])
+        console.log(user[0].id_firebase)
+        return user
+      })
+    console.log('AGGGGGGGGGG')
+  }
+
   return {
     ...guts,
     create,
-    verify
+    verify,
+    findNickByFirebaseId
   }
 }
