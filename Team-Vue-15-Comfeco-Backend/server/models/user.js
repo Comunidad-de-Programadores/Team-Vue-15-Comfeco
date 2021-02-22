@@ -74,13 +74,8 @@ module.exports = knex => {
       .timeout(guts.timeout)
       .then(user => {
         if (!user) throw matchErrorMsg
-        console.log('findNickByFirebaseId')
-        console.log(user)
-        console.log(user[0])
-        console.log(user[0].id_firebase)
         return user
       })
-    console.log('AGGGGGGGGGG')
   }
 
   return {
