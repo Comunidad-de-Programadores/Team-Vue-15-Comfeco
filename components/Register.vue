@@ -39,7 +39,8 @@
             </small>
           </v-row>
           <v-row>
-            <button class="toRegister" @click="registerUser">Crear una cuenta</button>
+            <!-- <button class="toRegister" @click="registerUser">Crear una cuenta</button> -->
+            <v-btn @click="registerUser">Crear una cuenta</v-btn>
           </v-row>
         </div>
       </v-form>
@@ -49,6 +50,15 @@
       :messageConfirm="messageConfirm"
       v-on:call-function="pushRoute"
     />
+
+    <v-snackbar
+      v-model="showSnackbar"
+      :timeout="timeout"
+    >
+      {{ snackbarText }}
+      <template v-slot:action="{ attrs }">
+      </template>
+    </v-snackbar>
   </v-card>
 </template>
 
@@ -73,24 +83,46 @@ export default {
       emailRules: [(v) => !!v || 'El correo electrónico es requerido'],
       passwordRules: [(v) => !!v || 'La contraseña es requerida', (v) => v == this.password || 'La contraseña no coincide'],
       messageConfirm: '',
+      showSnackbar: false,
+      timeout: 6000,
+      snackbarText: ''
     };
   },
   methods: {
     async registerUser() {
       if (this.password === this.passwordConfirm) {
         try {
-          await firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
+          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(async (user) => {
+            // Signed in
+            // ...
+
+          await this.$axios.$post('http://localhost:3001/register', {
+            username: this.nick,
+            password: this.password,
+            email: this.email,
+            id_firebase: user.user.uid
+          })
+          // TODO CHECK IF EVERYTHING IS OK ON THE BACKEND
+          this.showSnackbar = true
+          this.snackbarText = "Registro creado de manera exitosa"
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            this.showSnackbar = true
+            this.snackbarText = "Error al registrar"
+            // ..
+          });
           this.messageConfirm = 'Fuiste registrado correctamente';
           this.dialog = true;
         } catch (error) {
-          console.log(error);
+          this.showSnackbar = true
+          this.snackbarText = "Error al registrar"
           switch (error.message) {
             case 'Password should be at least 6 characters':
-              console.log('AQUI');
               this.error = 'La contraseña debe contener más de 6 caracteres.';
               break;
             case 'The email address is already in use by another account.':
-              console.log('AQUI');
               this.error = 'El correo ya se encuentra registrado.';
               break;
             default:

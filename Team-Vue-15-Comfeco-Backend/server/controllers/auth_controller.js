@@ -29,8 +29,7 @@ const postLogin = (req, res, next) => {
 }
 
 const postRegister = (req, res, next) => {
-  const props = req.body.user
-
+  const props = req.body
   User.findOne({ username: props.username })
     .then(user => {
       if (user) return next(createError({
@@ -40,11 +39,14 @@ const postRegister = (req, res, next) => {
 
       return User.create(props)
     })
-    .then(user => res.json({
-      ok: true,
-      message: 'Registration successful',
-      user
-    }))
+    .then(user => {
+        res.json({
+          ok: true,
+          message: 'Registration successful',
+          user
+        })
+      }
+    )
     .catch(next)
 }
 
