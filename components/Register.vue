@@ -90,69 +90,39 @@ export default {
   },
   methods: {
     async registerUser() {
-      console.log('test 0')
-      console.log(this.email)
-      debugger
       if (this.password === this.passwordConfirm) {
         try {
-          console.log('test')
-          console.log(this.email)
-          console.log(this.password)
           firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(async (user) => {
             // Signed in
             // ...
-            console.log('TEST')
-            console.log('TEST1111111111111111111111')
-             console.log(user)
-             console.log(user.user.uid)
-             
 
-          const temp = await this.$axios.$post('http://localhost:3001/register', {
+          await this.$axios.$post('http://localhost:3001/register', {
             username: this.nick,
             password: this.password,
             email: this.email,
             id_firebase: user.user.uid
           })
-          console.log('TEST2')
-          console.log(temp)
           // TODO CHECK IF EVERYTHING IS OK ON THE BACKEND
           this.showSnackbar = true
           this.snackbarText = "Registro creado de manera exitosa"
           })
           .catch((error) => {
-            debugger
-            console.log('TEST')
-            console.log('TEST222222222222222222222')
             var errorCode = error.code;
             var errorMessage = error.message;
             this.showSnackbar = true
             this.snackbarText = "Error al registrar"
             // ..
-          });;
-          console.log('TEST1111')
-          //console.log(response)
-          debugger
-/*           console.log('RESPONSE REGISTER')
-          console.log(response) */
-/*           this.$axios.$post('/user/12345', {
-            name: 'new name'
-          }, {
-            cancelToken: source.token
-          }) */
+          });
           this.messageConfirm = 'Fuiste registrado correctamente';
           this.dialog = true;
         } catch (error) {
-          console.log(error);
-          debugger
           this.showSnackbar = true
           this.snackbarText = "Error al registrar"
           switch (error.message) {
             case 'Password should be at least 6 characters':
-              console.log('AQUI');
               this.error = 'La contraseña debe contener más de 6 caracteres.';
               break;
             case 'The email address is already in use by another account.':
-              console.log('AQUI');
               this.error = 'El correo ya se encuentra registrado.';
               break;
             default:
@@ -166,8 +136,6 @@ export default {
       }
     },
     pushRoute() {
-      console.log('pushRoute')
-      debugger
       this.$refs.form.reset();
       this.$router.replace({ name: '/' });
     },

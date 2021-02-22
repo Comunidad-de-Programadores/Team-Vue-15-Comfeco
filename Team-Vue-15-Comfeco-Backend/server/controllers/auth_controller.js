@@ -30,11 +30,8 @@ const postLogin = (req, res, next) => {
 
 const postRegister = (req, res, next) => {
   const props = req.body
-  console.log('postRegister')
-  console.log(props)
   User.findOne({ username: props.username })
     .then(user => {
-      console.log('1')
       if (user) return next(createError({
         status: CONFLICT,
         message: 'Username already exists'
@@ -43,7 +40,6 @@ const postRegister = (req, res, next) => {
       return User.create(props)
     })
     .then(user => {
-        console.log('2')
         res.json({
           ok: true,
           message: 'Registration successful',

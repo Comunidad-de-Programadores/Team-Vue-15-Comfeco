@@ -38,12 +38,8 @@ const getUser = (req, res, next) => {
 
 const getNickByFirebaseId = (req, res, next) => {
   const idFirebase = req.params.id
-  console.log('getNickByFirebaseId idFirebase')
-  console.log(idFirebase)
   User.findNickByFirebaseId(idFirebase)
     .then(user => {
-      console.log('getNickByFirebaseId')
-      console.log(user)
       res.json({
         ok: true,
         message: 'User found',
