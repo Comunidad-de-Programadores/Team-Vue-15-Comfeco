@@ -36,6 +36,24 @@ const getUser = (req, res, next) => {
     .catch(next)
 }
 
+const getNickByFirebaseId = (req, res, next) => {
+  const idFirebase = req.params.id
+  User.findNickByFirebaseId(idFirebase)
+    .then(user => {
+      res.json({
+        ok: true,
+        message: 'User found',
+        user: {
+          id: user[0].id,
+          username: user[0].username,
+          id_firebase: user[0].id_firebase
+        }
+      })
+    })
+    .catch(next)
+}
+
+
 const putUser = (req, res, next) => {
   const userId = req.params.id
   const props = req.body.user
@@ -65,6 +83,7 @@ module.exports = {
   postUsers,
   getUsers,
   getUser,
+  getNickByFirebaseId,
   putUser,
   deleteUser
 }
