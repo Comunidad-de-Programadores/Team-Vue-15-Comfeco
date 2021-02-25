@@ -1,9 +1,9 @@
 <template>
-  <v-dialog v-model="dialogConfirm" max-width="450px">
-    <v-card>
-      <div class="d-flex justify-center">
-        <img src="../assets/logos/code-icon.svg" alt="logo comunidad" />
-      </div>
+  <v-dialog v-model="dialogConfirm" width="500px">
+    <v-card class="pa-4">
+      <v-row class="d-flex justify-center ma-2">
+        <img src="../assets/logos/code-icon.svg" width="50" alt="logo comunidad"
+      /></v-row>
       <v-divider></v-divider>
       <v-card-text class="pa-4 text-center">
         {{ message }}

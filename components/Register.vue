@@ -16,13 +16,18 @@
             required
           />
           <v-text-field
-            type="text"
+            type="email"
             placeholder="Correo electrónico"
             v-model="email"
             :rules="emailRules"
             required
           />
-          <v-text-field type="text" placeholder="Contraseña" v-model="password" />
+          <v-text-field
+            type="text"
+            placeholder="Contraseña"
+            v-model="password"
+            :rules="passwordRules"
+          />
           <v-text-field
             type="text"
             placeholder="Cofirma contraseña"
@@ -35,12 +40,12 @@
           </v-row>
           <v-row>
             <small>
-              Al registrarte estas aceptando las <Nuxt-link to="/disclaimer">Politicas de datos y privacidad</Nuxt-link>
+              Al registrarte estas aceptando las
+              <Nuxt-link to="/disclaimer">Politicas de datos y privacidad</Nuxt-link>
             </small>
           </v-row>
           <v-row>
-            <!-- <button class="toRegister" @click="registerUser">Crear una cuenta</button> -->
-            <v-btn @click="registerUser">Crear una cuenta</v-btn>
+            <v-btn color="secondary" @click="registerUser">Crear una cuenta</v-btn>
           </v-row>
         </div>
       </v-form>
@@ -51,13 +56,9 @@
       v-on:call-function="pushRoute"
     />
 
-    <v-snackbar
-      v-model="showSnackbar"
-      :timeout="timeout"
-    >
+    <v-snackbar v-model="showSnackbar" :timeout="timeout">
       {{ snackbarText }}
-      <template v-slot:action="{ attrs }">
-      </template>
+      <template v-slot:action="{ attrs }"> </template>
     </v-snackbar>
   </v-card>
 </template>
@@ -80,44 +81,54 @@ export default {
       passwordConfirm: '',
       error: '',
       nickRules: [(v) => !!v || 'El nickname es requerido.'],
-      emailRules: [(v) => !!v || 'El correo electrónico es requerido'],
-      passwordRules: [(v) => !!v || 'La contraseña es requerida', (v) => v == this.password || 'La contraseña no coincide'],
+      emailRules: [
+        (v) => !!v || 'E-mail es requerido',
+        (v) => /.+@.+\..+/.test(v) || 'El email tiene un formato incorrecto',
+      ],
+      passwordRules: [
+        (v) => !!v || 'Contraseña es requerido',
+        (v) => (v && v.length >= 6) || 'Min 6 caracteres',
+        (v) => v == this.password || 'La contraseña no coincide',
+      ],
       messageConfirm: '',
       showSnackbar: false,
       timeout: 6000,
-      snackbarText: ''
+      snackbarText: '',
     };
   },
   methods: {
     async registerUser() {
       if (this.password === this.passwordConfirm) {
         try {
-          firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(async (user) => {
-            // Signed in
-            // ...
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(this.email, this.password)
+            .then(async (user) => {
+              // Signed in
+              // ...
 
-          await this.$axios.$post('http://localhost:3001/register', {
-            username: this.nick,
-            password: this.password,
-            email: this.email,
-            id_firebase: user.user.uid
-          })
-          // TODO CHECK IF EVERYTHING IS OK ON THE BACKEND
-          this.showSnackbar = true
-          this.snackbarText = "Registro creado de manera exitosa"
-          })
-          .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            this.showSnackbar = true
-            this.snackbarText = "Error al registrar"
-            // ..
-          });
+              await this.$axios.$post('http://localhost:3001/register', {
+                username: this.nick,
+                password: this.password,
+                email: this.email,
+                id_firebase: user.user.uid,
+              });
+              // TODO CHECK IF EVERYTHING IS OK ON THE BACKEND
+              this.showSnackbar = true;
+              this.snackbarText = 'Registro creado de manera exitosa';
+            })
+            .catch((error) => {
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              this.showSnackbar = true;
+              this.snackbarText = 'Error al registrar';
+              // ..
+            });
           this.messageConfirm = 'Fuiste registrado correctamente';
           this.dialog = true;
         } catch (error) {
-          this.showSnackbar = true
-          this.snackbarText = "Error al registrar"
+          this.showSnackbar = true;
+          this.snackbarText = 'Error al registrar';
           switch (error.message) {
             case 'Password should be at least 6 characters':
               this.error = 'La contraseña debe contener más de 6 caracteres.';
@@ -137,13 +148,13 @@ export default {
     },
     pushRoute() {
       this.$refs.form.reset();
-      this.$router.replace({ name: '/' });
+      this.$router.push('/');
     },
   },
 };
 </script>
 <style scoped>
-small{
+small {
   display: inline-block;
   margin-top: 20px;
 }
