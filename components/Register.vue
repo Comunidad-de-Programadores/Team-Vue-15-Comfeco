@@ -30,7 +30,6 @@
             @click:append="show1 = !show1"
           />
           <v-text-field
-            color="white"
             placeholder="Confirma contraseña"
             v-model="passwordConfirm"
             :rules="passwordRules"
@@ -67,7 +66,6 @@
       :messageConfirm="messageConfirm"
       v-on:call-function="pushRoute"
     />
-
     <v-snackbar v-model="showSnackbar" :timeout="timeout" color="red">
       {{ snackbarText }}
       <template v-slot:action="{ attrs }"> </template>
@@ -114,12 +112,13 @@ export default {
   methods: {
     async registerUser() {
       const res = await this.$axios.$get('http://localhost:3001/users');
+      console.log(res);
       const nick = res.users.filter(
         (user) => user.username.toUpperCase() === this.nick.toUpperCase()
       );
-      if (nick) {
+      console.log(nick);
+      if (nick.length != 0) {
         this.error = 'Nickname ya se encuentra registrado, prueba con otro.';
-        this.errorColor = 'red';
       } else {
         if (this.password === this.passwordConfirm) {
           try {
