@@ -101,7 +101,7 @@ export default {
       passwordRules: [
         (v) => !!v || 'Contraseña es requerido',
         (v) => (v && v.length >= 6) || 'Min 6 caracteres',
-        (v) => v === this.password || 'La contraseña no coincide',
+        (v) => v === this.password || 'Las contraseñas no coinciden',
       ],
       messageConfirm: '',
       showSnackbar: false,

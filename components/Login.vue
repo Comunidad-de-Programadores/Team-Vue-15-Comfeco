@@ -14,11 +14,13 @@
         required
       ></v-text-field>
       <v-text-field
-        type="password"
+        :type="show ? 'text' : 'password'"
         placeholder="Contraseña"
         v-model="password"
         :rules="passwordRules"
         required
+        :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+        @click:append="show = !show"
       ></v-text-field>
       <small class="alert" v-if="error">{{ error }}</small>
     </v-form>
@@ -43,6 +45,7 @@ export default {
       email: '',
       password: '',
       error: '',
+      show: false,
       emailRules: [
         (v) => !!v || 'E-mail es requerido',
         (v) => /.+@.+\..+/.test(v) || 'El email tiene un formato incorrecto',
