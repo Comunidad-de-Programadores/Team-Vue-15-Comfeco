@@ -1,6 +1,6 @@
 <template>
-  <v-card class="card text-center" height="480px">
-    <v-form class="content">
+  <v-card class="card text-center" width="400px" height="450px">
+    <v-form class="pa-8">
       <img src="../assets/logos/code-icon.svg" alt="logo comunidad" />
       <div class="switcher">
         <Nuxt-link class="n-link" to="/">Inicia Sesión</Nuxt-link> |
@@ -22,8 +22,13 @@
       ></v-text-field>
       <small class="alert" v-if="error">{{ error }}</small>
     </v-form>
-
-    <button @click="authUser">Ingresar</button>
+    <v-row class="pa-4"
+      ><v-col cols="12" md="10" offset-md="1">
+        <v-btn class="mb-2" color="secondary" width="100%" rounded @click="authUser"
+          >Ingresar</v-btn
+        ></v-col
+      >
+    </v-row>
     <a href="/recover">¿Olvidaste tu contraseña?</a>
   </v-card>
 </template>
@@ -38,7 +43,10 @@ export default {
       email: '',
       password: '',
       error: '',
-      emailRules: [(v) => !!v || 'El correo electrónico es requerido'],
+      emailRules: [
+        (v) => !!v || 'E-mail es requerido',
+        (v) => /.+@.+\..+/.test(v) || 'El email tiene un formato incorrecto',
+      ],
       passwordRules: [(v) => !!v || 'La contraseña es requerida'],
     };
   },
@@ -57,13 +65,17 @@ export default {
           }
         }
       } catch (error) {
-        console.log(error);
-        switch (error.message) {
-          case 'The email address is badly formatted.':
+        console.log(error.code);
+        switch (error.code) {
+          case 'auth/invalid-email':
             this.error = 'El email tiene un formato incorrecto.';
             break;
-          case 'There is no user record corresponding to this identifier. The user may have been deleted.':
+          case 'auth/user-not-found':
             this.error = 'El usuario no se encuentra registrado';
+            break;
+          case 'auth/wrong-password':
+            this.error = 'La contraseña es incorrecta';
+            break;
           default:
             this.error = error;
             break;
