@@ -15,12 +15,12 @@
       </template>
 
       <div v-for="card in cards" :key="card.title" :cols="card.flex">
-        <v-card flat class="pa-2" tile>
+        <v-card flat class="px-2 pt-2" tile>
           <v-img
             :src="card.src"
             class="white--text align-end"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            height="200px"
+            height="140px"
           >
             <v-card-text class="mt-5 ma-0" v-text="card.title"></v-card-text>
             <img class="pa-0 ma-0" width="40" :src="card.framework" />

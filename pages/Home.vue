@@ -49,7 +49,7 @@
           <Comunidades />
         </v-col>
         <v-col cols="12" md="6">
-          <p class="caption mb-0">
+          <p class="text-center caption mb-0 pb-1">
             La proxima edición regresa en 2022, en la cual se planea involucrar a todos
             los programadores independientes del area del conocimiento que se encuentre,
             todo con un mismo proposito, aprender en comunidad.
@@ -60,11 +60,16 @@
           <Comunidades />
         </v-col>
       </v-row>
+      <v-row>
+        <v-col cols="12" md="8" offset="2">
+          <Slider2 />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="10" offset="2"> <Contador /></v-col>
+      </v-row>
     </section>
-    <section id="home-wrapper">
-      <Slider2 />
-      <Contador />
-    </section>
+
     <Footer />
   </v-row>
 </template>

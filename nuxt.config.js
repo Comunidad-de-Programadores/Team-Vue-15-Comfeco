@@ -43,11 +43,11 @@ export default {
       treeShake: true,
       themes: {
         light: {
-          primary: "3b0246",
-          secondary: "FFB703"
+          primary: "#4e065c",
+          secondary: "#FFB703"
         },
         dark: {
-          primary: "3b0246",
+          primary: "#4e065c",
           secondary: "#FFB703"
         }
       }
