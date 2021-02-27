@@ -35,7 +35,7 @@
             <v-list-item-avatar>
               <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
             </v-list-item-avatar>
-            <v-list-item-title class="mx-2">Santiago Seanz</v-list-item-title>
+            <v-list-item-title class="mx-2">{{ nickname }}</v-list-item-title>
             <v-icon color="black">keyboard_arrow_down</v-icon>
           </v-list-item>
         </v-list></template
@@ -75,11 +75,30 @@
 </template>
 
 <script>
+import firebase from 'firebase';
 import Comunidades from '../components/Comunidades.vue';
 import Header from '../components/Header';
 export default {
   components: { Comunidades, Header },
   name: 'Home',
+  data() {
+    return {
+      nickname: '',
+    };
+  },
+  async created() {
+    await this.getNicknameUser();
+  },
+  methods: {
+    async getNicknameUser() {
+      const { uid } = firebase.auth().currentUser;
+      console.log('USUARIO LOGUEADO', uid);
+      //FIXME corregir nuevo endpoint;
+      const result = await this.$axios.$get(`http://localhost:3001/users`);
+      const user = result.users.filter((user) => user.id_firebase === uid);
+      this.nickname = user[0].username;
+    },
+  },
 };
 </script>
 
