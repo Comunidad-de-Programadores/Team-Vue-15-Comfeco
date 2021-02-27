@@ -1,0 +1,21 @@
+#Perfil{
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+.submenu{
+  width: 100%;
+  background: silver;
+  margin-top: 90px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+.submenu button{
+  margin: 0 40px;
+  background: white;
+  padding: 20px 4%;
+  border-radius: 15px;
+}
