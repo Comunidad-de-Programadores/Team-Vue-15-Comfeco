@@ -32,7 +32,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/axios"],
+  modules: ["@nuxtjs/axios","nuxt-material-design-icons"],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -43,17 +43,16 @@ export default {
       treeShake: true,
       themes: {
         light: {
-          primary: "3b0246",
-          secondary: "FFB703"
+          primary: "#4e065c",
+          secondary: "#FFB703"
         },
         dark: {
-          primary: "3b0246",
+          primary: "#4e065c",
           secondary: "#FFB703"
         }
       }
     }
   },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
 };
