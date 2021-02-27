@@ -94,9 +94,10 @@ export default {
       const { uid } = firebase.auth().currentUser;
       console.log('USUARIO LOGUEADO', uid);
       //FIXME corregir nuevo endpoint;
-      const result = await this.$axios.$get(`http://localhost:3001/users`);
-      const user = result.users.filter((user) => user.id_firebase === uid);
-      this.nickname = user[0].username;
+      const result = await this.$axios.$get(`http://localhost:3001/users/nick/`+uid);
+      console.log(result);
+      const user = result.user;
+      this.nickname = user.username;
     },
   },
 };
