@@ -1,25 +1,79 @@
 <template>
-  <div id="Home">
-    <Header />
-      <Animated>
-        <h1>Bienvenidos a Comunity Fest and Code</h1>
-        <h3>Conoce gente, aprende y gana!</h3>
-        <p>La proxima edición regresa en 2022, en la cual se planea involucrar a todos los programadores independientes <br> del area del conocimiento que se encuentre, todo con un mismo proposito, aprender en comunidad.</p>
-        <section id="home-wrapper">
+  <v-row class="pa-2" id="Home">
+    <Header
+      ><template v-slot:content>
+        <v-list class="d-flex" dense>
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title>Inicio</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title>Comunidades</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title>Talleres</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title>Creadores de contenido</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item> </v-list
+        ><v-list class="d-flex" dense>
+          <v-list-item link>
+            <v-list-item-content>
+              <v-list-item-title>
+                <v-icon color="black">notifications_none</v-icon></v-list-item-title
+              >
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item class="avatar-user px-2">
+            <v-list-item-avatar>
+              <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+            </v-list-item-avatar>
+            <v-list-item-title class="mx-2">Santiago Seanz</v-list-item-title>
+            <v-icon color="black">keyboard_arrow_down</v-icon>
+          </v-list-item>
+        </v-list></template
+      ></Header
+    >
+    <section class="home-text">
+      <h3>Bienvenidos a Comunity Fest and Code</h3>
+      <h4>Conoce gente, aprende y gana!</h4>
+      <v-row>
+        <v-col cols="12" md="3">
           <Comunidades />
+        </v-col>
+        <v-col cols="12" md="6">
+          <p class="caption mb-0">
+            La proxima edición regresa en 2022, en la cual se planea involucrar a todos
+            los programadores independientes del area del conocimiento que se encuentre,
+            todo con un mismo proposito, aprender en comunidad.
+          </p>
           <Slider1 />
-        </section>
-        <Slider2 />
-        <Contador />
-      </Animated>
+        </v-col>
+        <v-col cols="12" md="3">
+          <Comunidades />
+        </v-col>
+      </v-row>
+    </section>
+    <section id="home-wrapper">
+      <Slider2 />
+      <Contador />
+    </section>
     <Footer />
-  </div>
+  </v-row>
 </template>
 
 <script>
 import Comunidades from '../components/Comunidades.vue';
+import Header from '../components/Header';
 export default {
-  components: { Comunidades },
+  components: { Comunidades, Header },
   name: 'Home',
 };
 </script>
@@ -27,25 +81,35 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-#Home{
+#Home {
   font-family: 'Montserrat', sans-serif;
 }
-h1{
-  font-size: 2.5rem;
-  font-weight: bolder;
-  padding: 16px;
+.avatar-user {
+  border: 1px solid gray;
+  border-radius: 15px;
+  margin: 5px;
 }
-h3{
+.home-text {
+  text-align: center;
+  align-content: center;
+  height: 20%;
+  width: 100%;
+  position: relative;
+  top: 13%;
+}
+
+h4 {
   color: gray;
 }
-p{
+p {
   padding: 20px 0;
 }
-.animated-bg{
+.animated-bg {
   flex-direction: column;
   padding: 100px 0;
 }
-#home-wrapper{
-  display: flex;
+#home-wrapper {
+  position: relative;
+  top: 25%;
 }
 </style>

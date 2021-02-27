@@ -22,9 +22,9 @@
         :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
         @click:append="show = !show"
       ></v-text-field>
-      <small class="alert" v-if="error">{{ error }}</small>
+      <small class="alert pa-0 ma-0" v-if="error">{{ error }}</small>
     </v-form>
-    <v-row class="pa-4"
+    <v-row
       ><v-col cols="12" md="10" offset-md="1">
         <v-btn class="mb-2" color="secondary" width="100%" rounded @click="authUser"
           >Ingresar</v-btn
