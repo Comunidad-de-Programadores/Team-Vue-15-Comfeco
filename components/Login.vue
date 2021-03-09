@@ -57,7 +57,10 @@ export default {
     async authUser() {
       try {
         if (this.email != '' && this.password != '') {
-          await firebase.auth().signInWithEmailAndPassword(this.email, this.password);
+          console.log('TEST')
+          console.log(app)
+          console.log(this.$fire)
+          await this.$fire.auth.signInWithEmailAndPassword(this.email, this.password);
           this.$router.push('/home');
         } else {
           if (this.email === '' && this.password === '')
