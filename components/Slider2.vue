@@ -1,11 +1,11 @@
 <template>
   <div id="Slider2">
-    <div class="title">
-      <h3>Sponsors</h3>
-      <button>Apoyar iniciativa</button>
-    </div>
-    
-    <VueSlickCarousel  v-bind="settings">
+    <v-row class="mb-5">
+      <v-col><h3>Sponsors</h3></v-col>
+
+      <v-col><v-btn class="primary">Apoyar iniciativa</v-btn></v-col>
+    </v-row>
+    <VueSlickCarousel v-bind="settings">
       <template #prevArrow="arrowOption">
         <div class="custom-arrow">
           {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
@@ -16,71 +16,58 @@
           {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
         </div>
       </template>
-      <div>
-        <v-avatar>
-          <img
-            src="https://cdn.vuetifyjs.com/images/john.jpg"
-            alt="John"
-          >
-        </v-avatar>
-      </div>
-      <div>
-        <v-avatar>
-          <img
-            src="https://cdn.vuetifyjs.com/images/john.jpg"
-            alt="John"
-          >
-        </v-avatar>
-      </div>
-      <div>
-        <v-avatar>
-          <img
-            src="https://cdn.vuetifyjs.com/images/john.jpg"
-            alt="John"
-          >
-        </v-avatar>
-      </div>
-      <div>
-        <v-avatar>
-          <img
-            src="https://cdn.vuetifyjs.com/images/john.jpg"
-            alt="John"
-          >
+      <div v-for="(item, i) in sponsors" :key="i">
+        <v-avatar width="200">
+          <img :src="item.logo" :alt="item.logo" />
         </v-avatar>
       </div>
     </VueSlickCarousel>
-
   </div>
-
 </template>
 
 <script>
-import VueSlickCarousel from 'vue-slick-carousel'
-import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import VueSlickCarousel from 'vue-slick-carousel';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 // optional style for arrows & dots
-import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
-import '~/assets/css/Slider2.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
+import '~/assets/css/Slider2.css';
 
 export default {
   components: { VueSlickCarousel },
   data() {
     return {
       settings: {
-        "dots": true,
-        "focusOnSelect": true,
-        "infinite": true,
-        "speed": 500,
-        "slidesToShow": 2,
-        "slidesToScroll": 3,
-        "touchThreshold": 5
-      }
-    }
-  }
-}
+        dots: true,
+        focusOnSelect: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 7,
+        slidesToScroll: 3,
+        touchThreshold: 5,
+      },
+      sponsors: [
+        { logo: `${require('@/assets/logos/huawei.svg')}`, nombre: 'Huawei' },
+        { logo: `${require('@/assets/logos/tekki.svg')}`, nombre: 'Tekki' },
+        { logo: `${require('@/assets/logos/fh.svg')}`, nombre: 'Fernando Herrera' },
+        { logo: `${require('@/assets/logos/logdev.svg')}`, nombre: 'LogDev' },
+        { logo: `${require('@/assets/logos/logdev2.svg')}`, nombre: 'LogDev2' },
+        { logo: `${require('@/assets/logos/logdev3.svg')}`, nombre: 'LogDev3' },
+        { logo: `${require('@/assets/logos/logdev4.svg')}`, nombre: 'LogDev4' },
+        { logo: `${require('@/assets/logos/huawei.svg')}`, nombre: 'Huawei' },
+        { logo: `${require('@/assets/logos/tekki.svg')}`, nombre: 'Tekki' },
+        { logo: `${require('@/assets/logos/fh.svg')}`, nombre: 'Fernando Herrera' },
+        { logo: `${require('@/assets/logos/logdev.svg')}`, nombre: 'LogDev' },
+        { logo: `${require('@/assets/logos/logdev2.svg')}`, nombre: 'LogDev2' },
+        { logo: `${require('@/assets/logos/logdev3.svg')}`, nombre: 'LogDev3' },
+        { logo: `${require('@/assets/logos/logdev4.svg')}`, nombre: 'LogDev4' },
+      ],
+    };
+  },
+};
 </script>
 
 <style>
 .custom-arrow {
-  background: black
+  background: black;
 }
 </style>

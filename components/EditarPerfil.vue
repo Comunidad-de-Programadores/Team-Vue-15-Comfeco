@@ -44,10 +44,21 @@
 </template>
 
 <script>
+import firebase from 'firebase';
 import "~/assets/css/EditarPerfil.css";
 
 export default {
   name: "EditarPerfil",
+  data() {
+    return {
+      
+    };
+  },
+  async mounted() {
+    console.log('mounted editarperfil')
+    const currentUser = firebase.auth().currentUser;
+    console.log(currentUser)
+  },
 };
 </script>
 

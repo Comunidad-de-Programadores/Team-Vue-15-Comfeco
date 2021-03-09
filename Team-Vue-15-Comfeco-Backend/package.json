@@ -7,6 +7,7 @@
     "start": "node ./server/start.js",
     "dev": "nodemon ./server/start.js",
     "db:migrate": "npx knex migrate:latest",
+    "db:rollback": "npx knex migrate:rollback",
     "db:seed": "npx knex seed:run"
   },
   "author": "",
