@@ -31,7 +31,7 @@
               >
             </v-list-item-content>
           </v-list-item>
-          <v-list-item class="avatar-user px-2">
+          <v-list-item class="avatar-user px-2" @click="redirectToProfile()">
             <v-list-item-avatar>
               <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
             </v-list-item-avatar>
@@ -75,7 +75,6 @@
 </template>
 
 <script>
-import firebase from 'firebase';
 import Comunidades from '../components/Comunidades.vue';
 import Header from '../components/Header';
 export default {
@@ -91,14 +90,22 @@ export default {
   },
   methods: {
     async getNicknameUser() {
-      const { uid } = firebase.auth().currentUser;
-      console.log('USUARIO LOGUEADO', uid);
-      //FIXME corregir nuevo endpoint;
-      const result = await this.$axios.$get(`http://localhost:3001/users/nick/`+uid);
-      console.log(result);
-      const user = result.user;
-      this.nickname = user.username;
+      try {
+        const { uid } = this.$fire.auth.currentUser;
+        console.log('USUARIO LOGUEADO', uid);
+        localStorage.setItem('id_firebase', uid)
+        //FIXME corregir nuevo endpoint;
+        const result = await this.$axios.$get(`http://localhost:3001/users/nick/`+uid);
+        console.log(result);
+        const user = result.user;
+        this.nickname = user.username;
+      } catch (error) {
+        console.log('Error - Home ', error)
+      }
     },
+    redirectToProfile() {
+      this.$router.push('/perfil');
+    }
   },
 };
 </script>

@@ -12,13 +12,10 @@ exports.up = knex => {
       t.string('country')
       t.string('speciality')
       t.string('biography')
-      t.timestamp('created_at').defaultTo(knex.fn.now())
-      t.timestamp('updated_at').defaultTo(knex.fn.now())
-    }).createTable('social_networks', t => {
-      t.increments('id').primary().unsigned()
-      t.string('name').unique().index()
-      t.string('base_url')
-      t.string('image')
+      t.string('facebook')
+      t.string('github')
+      t.string('linkedin')
+      t.string('twitter')
       t.timestamp('created_at').defaultTo(knex.fn.now())
       t.timestamp('updated_at').defaultTo(knex.fn.now())
     }).createTable('badges', t => {
@@ -42,14 +39,6 @@ exports.up = knex => {
       t.string('description')
       t.string('tag')
       t.string('image')
-      t.timestamp('created_at').defaultTo(knex.fn.now())
-      t.timestamp('updated_at').defaultTo(knex.fn.now())
-    }).createTable('users_social_networks', t => {
-      t.increments('id').primary().unsigned()
-      t.integer('id_user').unsigned().references('id').inTable('users').notNull().onDelete('cascade')
-      t.integer('id_social_network').unsigned().references('id').inTable('social_networks').notNull().onDelete('cascade')
-      t.string('username')
-      t.string('link')
       t.timestamp('created_at').defaultTo(knex.fn.now())
       t.timestamp('updated_at').defaultTo(knex.fn.now())
     }).createTable('users_badges', t => {

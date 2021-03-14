@@ -6,7 +6,7 @@
           <v-card>
             <v-row>
               <v-col class="text-center">
-                <v-btn @click="toModule(0)" color="gray" x-large>Mi Perfil</v-btn>
+                <v-btn @click="toModule(4)" color="gray" x-large>Mi Perfil</v-btn>
               </v-col>
               <v-col class="text-center">
                 <v-btn @click="toModule(1)" color="gray" x-large>Insignias</v-btn>
