@@ -1,6 +1,6 @@
 'use strict'
 
-const { User } = require('../models')
+const { User, Badge } = require('../models')
 
 const postUsers = (req, res, next) => {
   const props = req.body.user
@@ -75,6 +75,33 @@ const getNickByFirebaseId = (req, res, next) => {
     .catch(next)
 }
 
+const getBadgesByFirebaseId = (req, res, next) => {
+  const idFirebase = req.params.id
+  Badge.findBadgesByFirebaseId(idFirebase)
+    .then(badges => {
+      res.json({
+        ok: true,
+        message: 'User found',
+        badges
+      })
+    })
+    .catch(next)
+}
+
+const getAllBadges = (req, res, next) => {
+  console.log('AAA')
+  Badge.findAll()
+    .then(badges => {
+      res.json({
+        ok: true,
+        message: 'Badges found',
+        badges
+      })
+    })
+    .catch(next)
+}
+
+
 const getInfoByFirebaseId = (req, res, next) => {
   const idFirebase = req.params.id
   User.findNickByFirebaseId(idFirebase)
@@ -136,6 +163,8 @@ module.exports = {
   getUser,
   getNickByFirebaseId,
   getInfoByFirebaseId,
+  getBadgesByFirebaseId,
+  getAllBadges, // TODO MOVE TO CORRECT CONTROLLER
   updateUser,
   deleteUser
 }

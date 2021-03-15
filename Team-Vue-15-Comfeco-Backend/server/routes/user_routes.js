@@ -7,6 +7,8 @@ const {
   getUser,
   getNickByFirebaseId,
   getInfoByFirebaseId,
+  getBadgesByFirebaseId,
+  getAllBadges,
   updateUser,
   deleteUser
 } = require('../controllers/user_controller')
@@ -25,5 +27,11 @@ router.route('/users/nick/:id')
 
 router.route('/users/info/:id')
   .get(getInfoByFirebaseId)
+router.route('/badges/badgesAll')
+  .get(getAllBadges)
+router.route('/users/badges/:id')
+  .get(getBadgesByFirebaseId)
+
+
 
 module.exports = router

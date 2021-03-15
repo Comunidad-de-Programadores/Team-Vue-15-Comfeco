@@ -66,9 +66,53 @@ module.exports = knex => {
                 github: user.github ? user.github : undefined,
                 linkedin: user.linkedin ? user.linkedin : undefined,
                 twitter: user.twitter ? user.twitter : undefined
-            }).then(function () {
+            }).then(function (data) {
               // transaction suceeded, data written
               console.log('then')
+              console.log(data)
+              knex.select()
+              .from('users_badges')
+              .where({ id_user:  data })
+              .timeout(guts.timeout)
+              .then(user_badges => {
+                if (!user_badges) throw matchErrorMsg
+                console.log('user_badges')
+                console.log(user_badges)
+                // if he does not have the badge 1 then we check if he have all the fields and add it
+                const badgeSociable = user_badges.find( (badge) => {
+                  return badge.id_badge === 1
+                })
+                if (!badgeSociable) {
+                  // check if all the info is on the user profile if so make the insert of the badge 1 (sociable)
+                  knex.select()
+                  .from('users')
+                  .where({ id:  data })
+                  .timeout(guts.timeout)
+                  .then(user => {
+                    if (!user) throw matchErrorMsg
+                    console.log('user+++')
+                    console.log(user)
+                    if (user[0].biography !== null && user[0].birthdate !== null && user[0].country !== null && user[0].email !== null &&
+                      user[0].facebook !== null && user[0].genre !== null && user[0].github !== null && user[0].linkedin !== null &&
+                      user[0].twitter !== null && user[0].username !== null) { // TODO still need to add some fields
+                      console.log('ADDING BADGE TO USER')
+                      console.log(data)
+
+                      knex('users_badges')
+                      .insert({ 
+                        id_user: data,
+                        id_badge: 1 // the badge id predefined for Sociable
+                       }).then(result => {
+                         console.log('result')
+                         console.log(result)
+                       })
+                       // TODO handle error
+                    }
+                  })
+                }
+                return user
+              })
+              // check if the user have all the info and it does not have sociable badge
 
             })
             .catch(function (error) {

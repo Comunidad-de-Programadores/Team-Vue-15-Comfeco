@@ -27,9 +27,38 @@ module.exports = knex => {
   })
 
   const create = props => guts.create(props)
+  
+  const findAll = () => {
+    const matchErrorMsg = 'Username or password do not match'
 
+    return knex.select()
+      .from('badges')
+      .timeout(guts.timeout)
+      .then(badges => {
+        if (!badges) throw matchErrorMsg
+        console.log('BADGES')
+        return badges
+      })
+  }
+
+  const findBadgesByFirebaseId = (idFirebase) => {
+    const matchErrorMsg = 'Username or password do not match'
+
+    return knex.select()
+      .from('users_badges')
+      .join('users', 'users.id', '=', 'users_badges.id_user')
+      .join('badges', 'badges.id', '=', 'users_badges.id_badge')
+      .where({ id_firebase: idFirebase})
+      .timeout(guts.timeout)
+      .then(badges => {
+        if (!badges) throw matchErrorMsg
+        return badges
+      })
+  }
   return {
     ...guts,
-    create
+    create,
+    findBadgesByFirebaseId,
+    findAll
   }
 }
