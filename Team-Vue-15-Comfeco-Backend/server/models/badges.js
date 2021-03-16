@@ -1,6 +1,5 @@
 'use strict'
 
-const bcrypt = require('bcrypt')
 const createGuts = require('../helpers/model-guts')
 
 const name = 'Badge'

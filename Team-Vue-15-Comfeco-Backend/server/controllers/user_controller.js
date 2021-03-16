@@ -1,6 +1,6 @@
 'use strict'
 
-const { User, Badge } = require('../models')
+const { User, Badge, Group, Event } = require('../models')
 
 const postUsers = (req, res, next) => {
   const props = req.body.user
@@ -101,6 +101,31 @@ const getAllBadges = (req, res, next) => {
     .catch(next)
 }
 
+const getAllGroups = (req, res, next) => {
+  console.log('getAllGroups')
+  Group.findAll()
+    .then(groups => {
+      res.json({
+        ok: true,
+        message: 'Groups found',
+        groups
+      })
+    })
+    .catch(next)
+}
+
+const getAllEvents = (req, res, next) => {
+  console.log('getAllEvents')
+  Event.findAll()
+    .then(groups => {
+      res.json({
+        ok: true,
+        message: 'Event found',
+        groups
+      })
+    })
+    .catch(next)
+}
 
 const getInfoByFirebaseId = (req, res, next) => {
   const idFirebase = req.params.id
@@ -165,6 +190,8 @@ module.exports = {
   getInfoByFirebaseId,
   getBadgesByFirebaseId,
   getAllBadges, // TODO MOVE TO CORRECT CONTROLLER
+  getAllGroups, // TODO MOVE TO CORRECT CONTROLLER
+  getAllEvents, // TODO MOVE TO CORRECT CONTROLLER
   updateUser,
   deleteUser
 }

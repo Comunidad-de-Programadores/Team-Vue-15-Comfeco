@@ -1,6 +1,5 @@
 'use strict'
 
-const bcrypt = require('bcrypt')
 const createGuts = require('../helpers/model-guts')
 
 const name = 'User'
@@ -18,13 +17,13 @@ const selectableProps = [
 ]
 
 // Bcrypt functions used for hashing password and later verifying it.
-const SALT_ROUNDS = 10
+/* const SALT_ROUNDS = 10
 const hashPassword = password => bcrypt.hash(password, SALT_ROUNDS)
-const verifyPassword = (password, hash) => bcrypt.compare(password, hash)
+const verifyPassword = (password, hash) => bcrypt.compare(password, hash) */
 
 // Always perform this logic before saving to db. This includes always hashing
 // the password field prior to writing so it is never saved in plain text.
-const beforeSave = user => {
+/* const beforeSave = user => {
   console.log('USER')
   console.log(user)
   if (!user.password) return Promise.resolve(user)
@@ -33,7 +32,7 @@ const beforeSave = user => {
   return hashPassword(user.password)
     .then(hash => ({ ...user, password: hash }))
     .catch(err => `Error hashing password: ${ err }`)
-}
+} */
 
 module.exports = knex => {
   const guts = createGuts({
@@ -44,11 +43,9 @@ module.exports = knex => {
   })
 
   // Augment default `create` function to include custom `beforeSave` logic.
-  const create = props => beforeSave(props)
-    .then(user => guts.create(user))
+  const create = user => guts.create(user)
 
-  const updateUser = props => beforeSave(props)
-    .then(user => { 
+  const updateUser = user => { 
       console.log('updateUser model')
       console.log(user)
       knex('users')
@@ -155,7 +152,7 @@ module.exports = knex => {
       }); */
 
       // guts.create(user)
-    })
+    }
 
   const verify = (username, password) => {
     const matchErrorMsg = 'Username or password do not match'
