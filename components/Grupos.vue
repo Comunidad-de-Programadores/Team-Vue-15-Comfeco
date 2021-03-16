@@ -34,17 +34,15 @@
             <v-col md="5"><v-text-field label="Regular"></v-text-field></v-col>
           </v-row>
           <v-row>
-            <v-col md="4" v-for="n in 4" :key="n">
+            <v-col md="4" v-for="(group,index) in groups" :key="index">
               <v-card>
                 <v-img height="100px" src="https://picsum.photos/400" />
-                <v-card-title>Sociable</v-card-title>
+                <v-card-title>{{group.name}}</v-card-title>
                 <v-card-text>
                   <div class="text-center">
-                    <v-chip color="secondary">Typescript</v-chip>
-                    <v-chip color="red">Typescript</v-chip>
+                    <v-chip color="secondary">{{group.tag}}</v-chip>
                   </div>
-                  <h4>Los crypto</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <p>{{group.description}}</p>
                 </v-card-text>
                 <v-card-actions>
                   <v-btn color="primary" rounded>Unirse</v-btn>
@@ -60,7 +58,10 @@
 
 <script>
 export default {
-  name: "Grupos"
+  name: "Grupos",
+  props: {
+    groups: Array
+  }
 }
 </script>
 

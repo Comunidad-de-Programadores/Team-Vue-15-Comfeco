@@ -3,16 +3,16 @@
     <h1>Mis insignias</h1>
     <v-container>
       <v-row>
-        <v-col v-for="i in 4" :key="i" sm="12" md="3">
+        <v-col v-for="(badge,index) in badges" :key="index" sm="12" md="3">
           <v-card>
             <v-img height="300px" src="https://picsum.photos/400" />
-            <v-card-title>Sociable</v-card-title>
+            <v-card-title>{{badge.name}}</v-card-title>
             <v-card-text>
               <h4>Descripción</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p>{{badge.description}}</p>
               <hr>
               <h4>¿Como ganarla?</h4>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur alias laboriosam nihil.</p>
+              <p>{{badge.explanation}}</p>
             </v-card-text>
           </v-card>
         </v-col>
@@ -23,7 +23,10 @@
 
 <script>
 export default {
-  name: "Insignias"
+  name: "Insignias",
+  props: {
+    badges: Array
+  }
 }
 </script>
 

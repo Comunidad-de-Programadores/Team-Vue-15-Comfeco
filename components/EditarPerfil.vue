@@ -78,7 +78,7 @@ export default {
     console.log('this.firebase_id')
     console.log(this.id_firebase)
     // get user info and set
-    const result = await this.$axios.$get(`http://localhost:3001/users/info/`+this.id_firebase);
+    /*const result = await this.$axios.$get(`http://localhost:3001/users/info/`+this.id_firebase);
     console.log(result);
     const user = result.user
     this.username = user.username? user.username : '',
@@ -92,7 +92,7 @@ export default {
     this.facebook = user.facebook ? user.facebook : '',
     this.github = user.github ? user.github : '',
     this.linkedin = user.linkedin ? user.linkedin : '',
-    this.twitter = user.twitter ? user.twitter : ''
+    this.twitter = user.twitter ? user.twitter : ''*/
   },
 
   methods: {

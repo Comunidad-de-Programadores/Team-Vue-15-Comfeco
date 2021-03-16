@@ -95,10 +95,10 @@ export default {
         console.log('USUARIO LOGUEADO', uid);
         localStorage.setItem('id_firebase', uid)
         //FIXME corregir nuevo endpoint;
-        const result = await this.$axios.$get(`http://localhost:3001/users/nick/`+uid);
+        /*const result = await this.$axios.$get(`http://localhost:3001/users/nick/`+uid);
         console.log(result);
         const user = result.user;
-        this.nickname = user.username;
+        this.nickname = user.username;*/
       } catch (error) {
         console.log('Error - Home ', error)
       }
