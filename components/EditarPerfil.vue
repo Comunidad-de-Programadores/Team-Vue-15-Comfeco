@@ -97,6 +97,26 @@ export default {
 
   methods: {
     async saveChanges() {
+      if (this.password !== '') {
+        var user = firebase.auth().currentUser;
+        console.log('USER')
+        console.log(user)
+        if(user) {
+          // update password
+          user.updatePassword(this.password).then(function() {
+            // Update successful.
+            console.log('PASSWORD UPDATED')
+          }).catch(function(error) {
+            // An error happened.
+            console.log('ERROR UPDATING PASSWORD')
+            console.log(error)
+          });
+        } else {
+          // user needs to login again because we dont have the current firebase user
+          // TODO redirect
+          console.log('TODO redirect user')
+        }
+      } 
       await this.$axios.$put('http://localhost:3001/users', {
         id_firebase: this.id_firebase,
         username: this.username !== ''? this.username : undefined,
@@ -113,6 +133,9 @@ export default {
         linkedin: this.linkedin !== '' ? this.linkedin : undefined,
         twitter: this.twitter !== '' ? this.twitter : undefined
       })
+
+
+
     }
   }
 };
