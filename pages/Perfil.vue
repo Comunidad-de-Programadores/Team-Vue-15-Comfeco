@@ -200,6 +200,13 @@ export default {
       groups: testGroups
     };
   },
+
+  created() {
+    this.getBadges();
+    this.getEvents();
+    this.getGroups();
+  },
+
   methods: {
     toModule(index) {
       this.submodulos[this.moduloActivo] = false;
@@ -208,19 +215,28 @@ export default {
       this.$forceUpdate();
     },
     async getBadges() {
-      this.badges = await this.$axios.$get(
+      const request = await this.$axios.$get(
         `http://localhost:3001/badges/badgesAll`
       );
+      console.log('request')
+      console.log(request)
+      this.badges = request.badges
     },
     async getEvents() {
-      this.events = await this.$axios.$get(
+       const request = await this.$axios.$get(
         `http://localhost:3001/events/eventsAll`
       );
+      console.log('request')
+      console.log(request)
+      this.events = request.events
     },
     async getGroups() {
-      this.groups = await this.$axios.$get(
-        `http://localhost:3001/groups/groupssAll`
+       const request = await this.$axios.$get(
+        `http://localhost:3001/groups/groupsAll`
       );
+      console.log('request')
+      console.log(request)
+       this.groups =  request.groups
     }
   }
 };

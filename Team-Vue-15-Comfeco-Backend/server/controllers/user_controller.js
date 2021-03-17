@@ -117,11 +117,11 @@ const getAllGroups = (req, res, next) => {
 const getAllEvents = (req, res, next) => {
   console.log('getAllEvents')
   Event.findAll()
-    .then(groups => {
+    .then(events => {
       res.json({
         ok: true,
         message: 'Event found',
-        groups
+        events
       })
     })
     .catch(next)

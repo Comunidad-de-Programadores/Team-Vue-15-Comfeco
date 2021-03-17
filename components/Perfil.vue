@@ -95,12 +95,18 @@ export default {
   },
   computed: {
     minBadge(){
-      let reduced = this.badges.slice(0,5)
-      return reduced
+      if (this.badges) {
+        let reduced = this.badges.slice(0,5)
+        return reduced
+      }
     },
     minEvent(){
-      let reduced = this.events.slice(0,5)
-      return reduced
+      console.log('this.events.length')
+      console.log(this.events)
+      if (this.events) {
+        let reduced = this.events.slice(0,5)
+        return reduced
+      }
     }
   }
 }
