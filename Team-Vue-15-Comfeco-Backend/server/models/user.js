@@ -48,7 +48,7 @@ module.exports = knex => {
   const updateUser = user => { 
       console.log('updateUser model')
       console.log(user)
-      knex('users')
+      return knex('users')
       .where({ id_firebase: user.id_firebase })
       .update({ username: user.username,
                 password: user.password ? user.password : undefined,
