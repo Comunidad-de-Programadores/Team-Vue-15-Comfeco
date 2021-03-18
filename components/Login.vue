@@ -1,10 +1,10 @@
 <template>
-  <v-card class="card text-center" width="400px" height="450px">
+  <v-card class="card card-login text-center">
     <v-form class="pa-8">
       <img src="../assets/logos/code-icon.svg" alt="logo comunidad" />
       <div class="switcher">
         <Nuxt-link class="n-link" to="/">Inicia Sesión</Nuxt-link> |
-        <Nuxt-link class="n-link" to="/register">Registrate</Nuxt-link>
+        <Nuxt-link class="n-link" to="/register">Regístrate</Nuxt-link>
       </div>
       <v-text-field
         type="text"
@@ -26,7 +26,7 @@
     </v-form>
     <v-row
       ><v-col cols="12" md="10" offset-md="1">
-        <v-btn class="mb-2" color="secondary" width="100%" rounded @click="authUser"
+        <v-btn class="mb-2" color="secondary" width="95%" rounded @click="authUser"
           >Ingresar</v-btn
         ></v-col
       >
@@ -57,9 +57,9 @@ export default {
     async authUser() {
       try {
         if (this.email != '' && this.password != '') {
-          console.log('TEST')
-          console.log(app)
-          console.log(this.$fire)
+          console.log('TEST');
+          console.log(app);
+          console.log(this.$fire);
           await this.$fire.auth.signInWithEmailAndPassword(this.email, this.password);
           this.$router.push('/home');
         } else {

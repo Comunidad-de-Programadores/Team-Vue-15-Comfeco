@@ -1,36 +1,34 @@
 <template>
-  <div id="Slider2">
-    <v-row class="mb-5">
-      <v-col><h3>Sponsors</h3></v-col>
-
-      <v-col><v-btn class="primary">Apoyar iniciativa</v-btn></v-col>
+  <div id="SliderSponsors">
+    <v-row class="mb-1">
+      <v-col cols="12" sm="6"><h3>Sponsors</h3></v-col>
+      <v-col cols="12" sm="6"><v-btn class="primary">Apoyar iniciativa</v-btn></v-col>
     </v-row>
-    <VueSlickCarousel v-bind="settings">
-      <template #prevArrow="arrowOption">
-        <div class="custom-arrow">
-          {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-        </div>
-      </template>
-      <template #nextArrow="arrowOption">
-        <div class="custom-arrow">
-          {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-        </div>
-      </template>
-      <div v-for="(item, i) in sponsors" :key="i">
-        <v-avatar width="200">
-          <img :src="item.logo" :alt="item.logo" />
-        </v-avatar>
-      </div>
-    </VueSlickCarousel>
+    <v-col class="pa-0 ma-0" cols="12" lg="12" md="12" sm="12">
+      <VueSlickCarousel v-bind="settings">
+        <template #prevArrow="arrowOption">
+          <div class="custom-arrow">
+            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+          </div>
+        </template>
+        <template #nextArrow="arrowOption">
+          <div class="custom-arrow">
+            {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+          </div>
+        </template>
+        <div v-for="(item, i) in sponsors" :key="i">
+          <v-avatar width="200">
+            <img :src="item.logo" :alt="item.logo" />
+          </v-avatar>
+        </div> </VueSlickCarousel
+    ></v-col>
   </div>
 </template>
 
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
-// optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
-import '~/assets/css/Slider2.css';
 
 export default {
   components: { VueSlickCarousel },

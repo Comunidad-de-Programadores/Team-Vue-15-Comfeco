@@ -4,17 +4,18 @@
   box-sizing: border-box;
 }
 .animated-bg{
-  position: relative;
-  height: 100vh;
+  height: 90vh;
   background-color: white;
+  text-align: center;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .animated-bg > span{
   position: absolute;
-  pointer-events: none;
-  display: block;
+  display: flex;
+  height: 10%;
   animation: animate 5s linear infinite;
 }
 @keyframes animate{
@@ -29,7 +30,7 @@
     opacity: 1;
   }
   100%{
-    transform: scale(1) translateY(-500%) rotate(360deg);
+    transform: scale(1) translateY(-100%) rotate(360deg);
     opacity: 0;
   }
 }

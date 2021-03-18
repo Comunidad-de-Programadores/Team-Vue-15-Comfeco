@@ -1,14 +1,15 @@
 <template>
-  <v-card class="card pa-8" height="560" width="400">
+  <v-card class="card card-register">
     <div class="content">
       <img src="../assets/logos/code-icon.svg" alt="logo comunidad" />
       <div class="switcher">
         <Nuxt-link class="n-link" to="/">Inicia Sesión</Nuxt-link> |
-        <Nuxt-link class="n-link" to="/register">Registrate</Nuxt-link>
+        <Nuxt-link class="n-link" to="/register">Regístrate</Nuxt-link>
       </div>
       <v-form ref="form">
         <div class="fields">
           <v-text-field
+            dense
             type="text"
             placeholder="Nick"
             v-model="nick"
@@ -16,12 +17,14 @@
             required
           />
           <v-text-field
+            dense
             type="email"
             placeholder="Correo electrónico"
             v-model="email"
             :rules="emailRules"
           />
           <v-text-field
+            dense
             placeholder="Contraseña"
             v-model="password"
             :rules="passwordRules"
@@ -30,6 +33,7 @@
             @click:append="show1 = !show1"
           />
           <v-text-field
+            dense
             placeholder="Confirma contraseña"
             v-model="passwordConfirm"
             :rules="passwordRules"
@@ -38,16 +42,16 @@
             @click:append="show2 = !show2"
           />
           <v-row>
-            <small class="alert" v-if="error">{{ error }}</small>
+            <small class="alert" v-show="error">{{ error }}</small>
           </v-row>
           <v-row>
-            <small>
+            <small class="mt-2">
               Al registrarte estas aceptando las
               <Nuxt-link to="/disclaimer">Politicas de datos y privacidad</Nuxt-link>
             </small>
           </v-row>
           <v-row class="pa-4">
-            <v-col cols="12" md="8" offset="2">
+            <v-col cols="12" md="12">
               <v-btn
                 width="100%"
                 class="mb-4"
@@ -166,9 +170,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-small {
-  display: inline-block;
-  margin-top: 20px;
-}
-</style>

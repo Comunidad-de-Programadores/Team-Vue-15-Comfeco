@@ -31,7 +31,7 @@ export default {
 
         setTimeout(() => {
           square.remove();
-        }, 5000);
+        }, 3000);
       }
     }
 

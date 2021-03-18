@@ -8,8 +8,8 @@
     >
     <v-list class="py-0 my-0" v-for="(item, i) in items" :key="i">
       <v-list-item class="py-0 my-0">
-        <v-avatar class="mb-3">
-          <img :src="item.logo" alt="John" />
+        <v-avatar class="my-1">
+          <img :src="item.logo" :alt="item.comunidad" />
         </v-avatar>
         <v-list-item-content class="py-0 my-0">
           <p class="body-2">{{ item.comunidad }}</p>
@@ -26,8 +26,6 @@
 </template>
 
 <script>
-import '~/assets/css/Comunidades.css';
-
 export default {
   data() {
     return {

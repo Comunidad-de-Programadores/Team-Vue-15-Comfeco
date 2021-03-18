@@ -1,7 +1,7 @@
 <template>
-  <v-card class="pa-7" height="480px" width="760px">
+  <v-card class="card card-recover">
     <v-row>
-      <v-col cols="12" md="2" offset-md="5">
+      <v-col cols="12" sm="12" md="2" offset-lg="5">
         <img width="65" src="../assets/logos/code-icon.svg" alt="logo comunidad" />
       </v-col>
     </v-row>
@@ -12,30 +12,32 @@
         contraseña.
       </p>
     </div>
-    <div class="fields">
+    <div class="mx-4">
       <v-text-field
+        dense
         v-model="email"
         :rules="emailRules"
         type="text"
         placeholder="Correo electronico"
       />
     </div>
+    <v-row class="pa-0 ma-0 text-center">
+      <small class="alert" v-if="error">{{ error }}</small>
+    </v-row>
     <v-row class="pa-4">
-      <v-col cols="12" md="6" offset="3">
-        <v-btn width="100%" color="secondary" rounded @click="recoverPassword"
+      <v-col cols="12" sm="12" md="6" offset-lg="3">
+        <v-btn width="95%" color="secondary" rounded @click="recoverPassword"
           >Recupera contraseña</v-btn
         ></v-col
       >
     </v-row>
-    <v-row class="pa-0 ma-0 text-center">
-      <small class="alert" v-if="error">{{ error }}</small>
-    </v-row>
+
     <v-row class="pa-0 ma-0 text-center">
       <v-col class="pa-0 ma-0" cols="12" md="12">
         <span class="pa-4"
           >Si ya estas registrado
           <Nuxt-link class="n-link" to="/">Inicia Sesión</Nuxt-link> ó si aún no tienes
-          una cuenta <Nuxt-link class="n-link" to="/">Registráte</Nuxt-link></span
+          una cuenta <Nuxt-link class="n-link" to="/">Regístrate</Nuxt-link></span
         >
       </v-col>
     </v-row>
@@ -49,8 +51,8 @@
 
 <script>
 import firebase from 'firebase';
-import '../assets/css/Login.css';
 import UiModalConfirm from '../components/UiModalConfirm';
+import '../assets/css/Login.css';
 export default {
   components: {
     UiModalConfirm,
@@ -97,13 +99,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.text {
-  margin-top: 60px;
-  text-align: left;
-}
-.text h3 {
-  margin: 16px 0;
-}
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="Slider1">
+  <div id="SliderCoachs">
     <h4>Ellos ya creen en esta iniciativa</h4>
     <VueSlickCarousel v-bind="settings">
       <template #prevArrow="arrowOption">
@@ -38,9 +38,7 @@
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
-// optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
-import '~/assets/css/Slider1.css';
 
 export default {
   components: { VueSlickCarousel },

@@ -1,5 +1,5 @@
 <template>
-  <div class="inicio">
+  <div>
     <Header />
     <Animated>
       <Login />
@@ -17,5 +17,3 @@ export default {
   Login: 'none',
 };
 </script>
-
-<!-- Los estilos estan en assets/css -->
