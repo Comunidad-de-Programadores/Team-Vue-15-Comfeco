@@ -3,18 +3,18 @@
     <h1>Eventos activos</h1>
     <v-container>
       <v-row>
-        <v-col v-for="(event,index) in events" :key="index" sm="12" md="4">
+        <v-col v-for="(event, index) in events" :key="index" sm="12" md="4">
           <v-card>
-            <v-img height="300px" src="https://picsum.photos/400" />
-            <v-card-title>{{event.name}}</v-card-title>
+            <v-img height="250px" src="https://pbs.twimg.com/media/Et0UCkRXUAA98fS.jpg" />
+            <v-card-title>{{ event.name }}</v-card-title>
             <v-card-text>
-              <p>{{event.description}}</p>
+              <p>{{ event.description }}</p>
             </v-card-text>
             <v-card-actions>
-              <v-btn>Participar</v-btn>
-              <v-btn outlined>Mas informacion</v-btn>
-              <v-btn>
-                <v-icon>mdi-share-variant</v-icon>
+              <v-btn color="secondary">Participar</v-btn>
+              <v-btn outlined color="primary">Mas información</v-btn>
+              <v-btn color="green">
+                <v-icon color="white">mdi-share-variant</v-icon>
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -26,18 +26,18 @@
 
 <script>
 export default {
-  name: "Eventos",
+  name: 'Eventos',
   props: {
-    events: Array
-  }
-}
+    events: Array,
+  },
+};
 </script>
 
 <style>
-#Eventos{
+#Eventos {
   margin-bottom: 70px;
 }
-#Eventos h1{
+#Eventos h1 {
   margin: 20px 0;
   text-align: center;
   font-weight: 300;
