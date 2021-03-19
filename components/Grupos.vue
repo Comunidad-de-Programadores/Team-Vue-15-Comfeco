@@ -66,7 +66,7 @@
                 flat
                 hide-details
                 prepend-inner-icon="mdi-magnify"
-                label="Search"
+                label="Búsqueda"
               ></v-text-field> </v-col
           ></v-row>
 
