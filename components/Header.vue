@@ -8,7 +8,7 @@
     >
       <v-list dense>
         <template v-for="item in items">
-          <v-list-item :key="item.text" link>
+          <v-list-item :key="item.text" link to="/Home">
             <v-list-item-action>
               <v-icon color="white">{{ item.icon }}</v-icon>
             </v-list-item-action>
@@ -40,7 +40,10 @@
       :clipped-left="$vuetify.breakpoint.lgAndUp"
     >
       <v-app-bar-nav-icon
-        v-if="$vuetify.breakpoint.mdAndDown && currentRouteName === 'Home'"
+        v-if="
+          ($vuetify.breakpoint.mdAndDown && currentRouteName === 'Home') ||
+          currentRouteName === 'Perfil'
+        "
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
       <img id="logo" src="../assets/logos/logo.svg" alt="logo" />
