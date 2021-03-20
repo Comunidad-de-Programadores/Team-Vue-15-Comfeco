@@ -1,9 +1,9 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.animated-bg{
+.animated-bg {
   height: 90vh;
   background-color: white;
   text-align: center;
@@ -18,35 +18,35 @@
   height: 10%;
   animation: animate 5s linear infinite;
 }
-@keyframes animate{
-  0%{
+@keyframes animate {
+  0% {
     transform: scale(0) translateY(0) rotate(0deg);
     opacity: 0;
   }
-  10%{
+  10% {
     opacity: 1;
   }
-  90%{
+  90% {
     opacity: 1;
   }
-  100%{
+  100% {
     transform: scale(1) translateY(-100%) rotate(360deg);
     opacity: 0;
   }
 }
-.bg-vue{
-  background-image: url('../logos/vue-icon.svg');
+.bg-vue {
+  background-image: url("../logos/vue-icon.svg");
   background-size: contain;
 }
-.bg-react{
-  background-image: url('../logos/react-icon.svg');
+.bg-react {
+  background-image: url("../logos/react-icon.svg");
   background-size: contain;
 }
-.bg-angular{
-  background-image: url('../logos/svelte-icon.svg');
+.bg-angular {
+  background-image: url("../logos/svelte-icon.svg");
   background-size: contain;
 }
-.bg-svelte{
-  background-image: url('../logos/angular-icon.svg');
+.bg-svelte {
+  background-image: url("../logos/angular-icon.svg");
   background-size: contain;
 }
