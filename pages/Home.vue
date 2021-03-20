@@ -9,7 +9,7 @@
         <h4 class="secondary--text">¡Conoce gente, aprende y gana!</h4></v-col
       ><v-row>
         <v-col v-if="$vuetify.breakpoint.lgAndUp" cols="12" md="3">
-          <Comunidades />
+          <Community />
         </v-col>
         <v-col cols="12" md="6" sm="8">
           <p class="text-center caption my-0 py-0 px-4">
@@ -20,7 +20,7 @@
           <SliderCoachs />
         </v-col>
         <v-col cols="12" md="3">
-          <Comunidades />
+          <Community />
         </v-col>
       </v-row>
       <v-row>
@@ -28,7 +28,7 @@
           <SliderSponsors />
         </v-col>
       </v-row>
-      <Contador />
+      <Counter />
     </section>
 
     <Footer />
@@ -36,24 +36,12 @@
 </template>
 
 <script>
-import Comunidades from '../components/Comunidades.vue';
-import Header from '../components/Header';
-import SliderCoachs from '../components/SliderCoachs';
-import SliderSponsors from '../components/SliderSponsors';
-import NavMain from '../components/NavMain';
 export default {
-  components: {
-    Comunidades,
-    Header,
-    SliderCoachs,
-    SliderSponsors,
-    NavMain,
-  },
   name: 'Home',
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 #Home {
