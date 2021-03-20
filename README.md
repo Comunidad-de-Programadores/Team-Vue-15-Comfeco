@@ -79,7 +79,7 @@ Para más detalle mira [Nuxt.js docs](https://nuxtjs.org).
 - Utilizamos Git Hub Project para poder hacer seguimiento de nuestro progreso.
 
   Puedes revisarlo aqui [Tablero-Kanban-Team-Vue-15-Comfeco](https://github.com/Comunidad-de-Programadores/Team-Vue-15-Comfeco/projects/1).
-## Desarrolladores
+## Equipo de desarrollo
 
 Construido por :
 
