@@ -39,6 +39,7 @@ Community Fest and Code planea hacer un evento en el 2022 en donde incluya no so
   <summary>📱 Versión Mobile</summary>
 
 ![screenshot](https://i.imgur.com/3TJA64F.png)
+<br>
 ![screenshot](https://i.imgur.com/ZPgD3xt.png)
 
 </details>
