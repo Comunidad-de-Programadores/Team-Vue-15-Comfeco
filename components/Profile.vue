@@ -4,10 +4,13 @@
       <v-row>
         <v-col md="3">
           <v-card class="px-1 pb-12" outlined>
+            <img v-if="image" class="profile" :src="image" />
             <img
-              class="perfil"
-              src="https://img.icons8.com/cotton/2x/gender-neutral-user.png"
+              v-else
+              class="profile"
+              src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
             />
+
             <v-card-title>
               {{ nickname || 'Admin' }}
               <v-btn
@@ -20,12 +23,11 @@
                 >Editar<v-icon color="white">mdi-account-edit</v-icon></v-btn
               >
             </v-card-title>
-            <v-card-subtitle>{{ speciality }}</v-card-subtitle>
-            <p class="body-2 mx-4">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima voluptas
-              recusandae labore molestiae aspernatur dolore officia quam amet accusantium
-              eius? Vel delectus molestias dicta hic aperiam ipsam est quaerat
-              repudiandae.
+            <v-card-subtitle v-if="speciality">{{ speciality }}</v-card-subtitle>
+            <v-card-subtitle v-else>{{ speciality }}</v-card-subtitle>
+            <p v-if="biography" class="body-2 mx-4">{{ biography }}</p>
+            <p v-else class="body-2 mx-4">
+              ¡Completa tu perfil y gana tu primera insignia!
             </p>
             <v-card-actions>
               <v-row>
@@ -48,12 +50,12 @@
         <v-col md="6">
           <v-row>
             <v-col md="12">
-              <v-card color="aliceblue" outlined tile class="text-center pa-4">
+              <v-card color="#efefef" outlined tile class="text-center pa-4">
                 <h1 class="primary--text font-weight-bold">Insignias</h1>
-                <v-row>
+                <v-row v-if="myBadges.length != 0">
                   <v-col
                     class="text-center ma-2"
-                    v-for="(badge, index) in minBadge"
+                    v-for="(badge, index) in myBadges"
                     :key="index"
                   >
                     <img
@@ -62,6 +64,10 @@
                       src="https://i.imgur.com/zt9FZ7k.png"
                     />
                   </v-col>
+                </v-row>
+                <v-row class="body-2 my-5" v-else>
+                  Aún no cuentas con insignias, puedes obtener tu primera insignia
+                  completando la información de tu perfil.
                 </v-row>
               </v-card>
             </v-col>
@@ -108,15 +114,23 @@
         </v-col>
         <v-col md="3">
           <v-card color="white">
-            <h2>Eventos de interes</h2>
-            <v-row style="max-height: 560px; overflow: auto">
-              <v-col md="12" v-for="(event, index) in minEvent" :key="index">
+            <h2>Eventos Guardados</h2>
+            <v-row v-if="myEvents.length != 0" style="max-height: 560px; overflow: auto">
+              <v-col md="12" v-for="(event, index) in myEvents" :key="index">
                 <v-card color="#efefef" class="pa-2" flat>
                   <v-img src="https://pbs.twimg.com/media/Et0UCkRXUAA98fS.jpg" />
-                  <v-card-title>{{ event.name }}</v-card-title>
+                  <v-card-title>Evento {{ event.id_event }}</v-card-title>
                   <v-card-actions class="text-center">
                     <v-btn color="secondary">Mas información</v-btn>
                   </v-card-actions>
+                </v-card>
+              </v-col>
+            </v-row>
+            <v-row v-else class="body-2" style="max-height: 560px; overflow: auto">
+              <v-col md="12">
+                <v-card flat color="#efefef" class="pa-4 ma-5">
+                  Aún no cuentas con eventos, puedes agregar un evento a tu agenda desde
+                  la opción eventos.
                 </v-card>
               </v-col>
             </v-row>
@@ -129,27 +143,26 @@
 
 <script>
 export default {
-  name: 'Perfil-comp',
+  name: 'Profile-comp',
   props: {
     badges: Array,
     events: Array,
-    nickname: '',
-    biagraphy: '',
-    speciality: '',
+    myEvents: Array,
+    myBadges: Array,
   },
   async created() {
     await this.getNicknameUser();
   },
+  data() {
+    return {
+      nickname: '',
+      biography: '',
+      speciality: '',
+      image: '',
+    };
+  },
   computed: {
-    minBadge() {
-      if (this.badges) {
-        let reduced = this.badges.slice(0, 5);
-        return reduced;
-      }
-    },
     minEvent() {
-      console.log('this.events.length');
-      console.log(this.events);
       if (this.events) {
         let reduced = this.events.slice(0, 5);
         return reduced;
@@ -160,15 +173,14 @@ export default {
     async getNicknameUser() {
       try {
         const { uid } = this.$fire.auth.currentUser;
-        console.log('USUARIO LOGUEADO', uid);
         localStorage.setItem('id_firebase', uid);
         const id = await localStorage.getItem('id_firebase');
         const result = await this.$axios.$get('http://localhost:3001/users/info/' + id);
-        console.log('Perfil', result);
         const user = result.user;
         this.nickname = user.username;
-        this.biagraphy = user.biagraphy;
+        this.biography = user.biography;
         this.speciality = user.speciality;
+        this.image = user.image;
       } catch (error) {
         console.log('Error - Home ', error);
       }
@@ -177,19 +189,21 @@ export default {
 };
 </script>
 
-<style lang="scss">
-#Perfil-comp {
+<style lang="scss" scoped>
+#Profile-comp {
   margin-bottom: 70px;
 }
-#Perfil h1 {
-  font-weight: 300;
-  padding: 20px;
+#Profile {
+  h1 {
+    font-weight: 300;
+    padding: 20px;
+  }
+  h2 {
+    font-weight: 300;
+    padding: 16px;
+  }
 }
-#Perfil h2 {
-  font-weight: 300;
-  padding: 16px;
-}
-.perfil {
+.profile {
   width: 80%;
   margin: 10%;
 }

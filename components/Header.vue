@@ -7,8 +7,9 @@
       app
     >
       <v-list dense>
+        <ItemProfile />
         <template v-for="item in items">
-          <v-list-item :key="item.text" link to="/Home">
+          <v-list-item :key="item.text" :to="item.route">
             <v-list-item-action>
               <v-icon color="white">{{ item.icon }}</v-icon>
             </v-list-item-action>
@@ -42,7 +43,7 @@
       <v-app-bar-nav-icon
         v-if="
           ($vuetify.breakpoint.mdAndDown && currentRouteName === 'Home') ||
-          currentRouteName === 'Perfil'
+          currentRouteName === 'Profile'
         "
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
@@ -54,19 +55,21 @@
 </template>
 
 <script>
+import ItemProfile from '../components/ItemProfile';
 export default {
-  props: {
-    hasLogin: Boolean,
+  components: {
+    ItemProfile,
   },
   data() {
     return {
       dialog: false,
       drawer: false,
       items: [
-        { icon: 'mdi-home', text: 'Inicio' },
-        { icon: 'mdi-account-heart', text: 'Comunidades' },
-        { icon: 'mdi-desktop-mac-dashboard', text: 'Talleres' },
-        { icon: 'mdi-draw', text: 'Creadores de contenido' },
+        { icon: 'mdi-account-details-outline', text: 'Mi perfil', route: '/Profile' },
+        { icon: 'mdi-home', text: 'Inicio', route: '/Home' },
+        { icon: 'mdi-account-heart', text: 'Comunidades', route: '/Profile' },
+        { icon: 'mdi-desktop-mac-dashboard', text: 'Talleres', route: '/Profile' },
+        { icon: 'mdi-draw', text: 'Creadores de contenido', route: '/Profile' },
       ],
     };
   },
