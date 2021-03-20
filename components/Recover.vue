@@ -50,13 +50,8 @@
 </template>
 
 <script>
-import firebase from 'firebase';
-import UiModalConfirm from '../components/UiModalConfirm';
-import '../assets/css/Login.css';
+import '../assets/scss/Login.scss';
 export default {
-  components: {
-    UiModalConfirm,
-  },
   data() {
     return {
       dialog: false,
@@ -74,13 +69,12 @@ export default {
       try {
         const res = await this.$axios.$get('http://localhost:3001/users');
         const user = res.users.filter((user) => user.email === this.email);
-        console.log(user);
         if (user.length != 0) {
           const actionCodeSettings = {
-            url: 'http://localhost:3000/',
+            url: 'http://localhost:3001/',
             handleCodeInApp: false,
           };
-          firebase.auth().sendPasswordResetEmail(this.email, actionCodeSettings);
+          this.$fire.auth.sendPasswordResetEmail(this.email, actionCodeSettings);
           this.messageConfirm =
             'Por favor revisa tu correo electrónico,Te hemos enviado un enlace para recuperar tu contraseña.';
           this.dialog = true;
@@ -88,7 +82,7 @@ export default {
           this.error = 'El correo electrónico no se encuentra registrado.';
         }
       } catch (error) {
-        console.log('Error', error);
+        console.log('Error-Recover', error);
       }
     },
     pushRoute() {

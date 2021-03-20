@@ -1,5 +1,5 @@
 <template>
-  <v-row id="Contador"
+  <v-row id="Counter"
     ><v-col cols="12" lg="12" sm="12" md="12">
       <h4 class="secondary--text">Prepárate, lo bueno esta por venir</h4></v-col
     >

@@ -79,7 +79,7 @@
 
 <script>
 import firebase from 'firebase';
-import '../assets/css/Login.css';
+import '../assets/scss/Login.scss';
 import UiModalConfirm from '../components/UiModalConfirm';
 
 export default {
@@ -116,11 +116,9 @@ export default {
   methods: {
     async registerUser() {
       const res = await this.$axios.$get('http://localhost:3001/users');
-      console.log(res);
       const nick = res.users.filter(
         (user) => user.username.toUpperCase() === this.nick.toUpperCase()
       );
-      console.log(nick);
       if (nick.length != 0) {
         this.error = 'Nickname ya se encuentra registrado, prueba con otro.';
       } else {

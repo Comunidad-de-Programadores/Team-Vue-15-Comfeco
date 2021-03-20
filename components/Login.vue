@@ -36,9 +36,6 @@
 </template>
 
 <script>
-import firebase from 'firebase';
-import '../assets/css/Login.css';
-
 export default {
   data() {
     return {
@@ -57,11 +54,8 @@ export default {
     async authUser() {
       try {
         if (this.email != '' && this.password != '') {
-          console.log('TEST');
-          console.log(app);
-          console.log(this.$fire);
           await this.$fire.auth.signInWithEmailAndPassword(this.email, this.password);
-          this.$router.push('/home');
+          this.$router.push('/Home');
         } else {
           if (this.email === '' && this.password === '')
             this.error = 'Debes completar todos los campos.';
@@ -71,7 +65,6 @@ export default {
           }
         }
       } catch (error) {
-        console.log(error.code);
         switch (error.code) {
           case 'auth/invalid-email':
             this.error = 'El email tiene un formato incorrecto.';

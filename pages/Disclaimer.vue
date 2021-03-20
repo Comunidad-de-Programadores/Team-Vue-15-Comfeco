@@ -1,9 +1,9 @@
 <template>
   <div id="Disclaimer">
     <Header />
-      <Animated>
-        <Disclaimer />
-      </Animated>
+    <Animated>
+      <Disclaimer />
+    </Animated>
     <Footer />
   </div>
 </template>
@@ -15,7 +15,7 @@ import Disclaimer from '../components/Disclaimer.vue';
 
 export default {
   components: { Animated, Header, Disclaimer },
-  name: 'Recupera',
+  name: 'Disclaimer',
   layout: 'none',
 };
 </script>

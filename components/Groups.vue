@@ -6,7 +6,7 @@
         <v-col sm="12" md="3">
           <v-card class="pa-2" outlined>
             <v-toolbar color="grey">
-              <v-toolbar-title>Crazy techs</v-toolbar-title>
+              <v-toolbar-title>Vue - Crazy techs</v-toolbar-title>
               <v-spacer />
               <v-avatar>
                 <img src="https://i.imgur.com/Xf59Mmk.png?3" />
@@ -53,6 +53,7 @@
                 label="Filtra por Tag"
                 v-model="selectedGroup"
                 flat
+                dense
                 hide-details
                 @change="filterByTag()"
                 :items="itemsGroups"
@@ -64,6 +65,7 @@
                 v-model="search"
                 clearable
                 flat
+                dense
                 hide-details
                 prepend-inner-icon="mdi-magnify"
                 label="Búsqueda"
@@ -166,6 +168,7 @@ export default {
   },
   created() {
     this.getGroupsName();
+    console.log('PROPS', this.groups);
     this.items = this.groups;
   },
   watch: {

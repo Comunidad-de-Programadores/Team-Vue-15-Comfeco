@@ -1,6 +1,7 @@
 <template>
-  <div id="Insignias">
-    <h1>Mis insignias</h1>
+  <div id="Badges">
+    <h1>Insignias</h1>
+    <h3 class="primary--text text-center">Colecciona nuestras insegnias</h3>
     <v-container>
       <v-row>
         <v-col v-for="(badge, index) in badges" :key="index" sm="12" md="3">
@@ -23,20 +24,20 @@
 
 <script>
 export default {
-  name: 'Insignias',
+  name: 'Badges',
   props: {
     badges: Array,
   },
 };
 </script>
 
-<style>
-#Insignias {
+<style lang="scss">
+#Badges {
   margin-bottom: 70px;
-}
-#Insignias h1 {
-  margin: 20px 0;
-  text-align: center;
-  font-weight: 300;
+  h1 {
+    margin: 20px 0;
+    text-align: center;
+    font-weight: 300;
+  }
 }
 </style>

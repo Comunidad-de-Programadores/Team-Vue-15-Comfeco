@@ -1,8 +1,16 @@
 <template>
-  <v-card class="mx-auto justify-center" id="Comunidades" max-width="300" height="250">
+  <v-card class="mx-auto justify-center" id="Community" max-width="300" height="250">
     <v-row class="pa-2"
       ><v-card-title class="font-weight-bold">Comunidades </v-card-title
-      ><v-btn class="ma-5" elevation="0" color="primary" light outlined small shaped
+      ><v-btn
+        to="/Profile"
+        class="ma-5"
+        elevation="0"
+        color="primary"
+        light
+        outlined
+        small
+        shaped
         >Ver más</v-btn
       ></v-row
     >

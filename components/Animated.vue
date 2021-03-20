@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import '../assets/css/Animated.css';
+import '../assets/scss/Animated.scss';
 
 export default {
   data: () => {
