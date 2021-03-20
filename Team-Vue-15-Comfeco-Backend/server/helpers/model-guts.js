@@ -16,7 +16,7 @@ module.exports = ({
 }) => {
   const create = props => {
     delete props.id // not allowed to set `id`
-
+    console.log('PROPS',props)
     return knex.insert(props)
       .returning(selectableProps)
       .into(tableName)

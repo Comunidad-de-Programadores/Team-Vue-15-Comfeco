@@ -10,7 +10,7 @@ module.exports = {
       host: 'localhost',
       database: 'comfeco',
       user: 'root',
-      password: '',
+      password: 'password',
     },
     migrations: {
       tableName: 'knex_migrations',
@@ -22,9 +22,9 @@ module.exports = {
   },
   // TODO adjust when the time comes
   staging: {
-    client: 'postgresql',
+    client: 'mysql',
     connection: {
-      database: 'my_db',
+      database: 'comfeco',
       user:     'username',
       password: 'password'
     },
@@ -43,7 +43,7 @@ module.exports = {
       host: 'localhost',
       database: 'comfeco',
       user: 'root',
-      password: '',
+      password: 'password',
     },
     migrations: {
       tableName: 'knex_migrations',

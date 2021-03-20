@@ -1,17 +1,9 @@
 'use strict'
 
-const { User, Badge, Group, Event } = require('../models')
+const { User } = require('../models')
 
 const postUsers = (req, res, next) => {
   const props = req.body.user
-/* 
-  {
-    username: this.nick,
-    password: this.password,
-    email: this.email,
-    id_firebase: uid,
-  } */
-
 
   User.create(props)
     .then(user => res.json({
@@ -23,10 +15,7 @@ const postUsers = (req, res, next) => {
 }
 
 const updateUser = (req, res, next) => {
-  // console.log(req.body)
   const props = req.body
-  console.log('updateUser controller')
-  console.log(props)
   User.updateUser(props)
     .then(user => res.json({
       ok: true,
@@ -75,58 +64,6 @@ const getNickByFirebaseId = (req, res, next) => {
     .catch(next)
 }
 
-const getBadgesByFirebaseId = (req, res, next) => {
-  const idFirebase = req.params.id
-  Badge.findBadgesByFirebaseId(idFirebase)
-    .then(badges => {
-      res.json({
-        ok: true,
-        message: 'User found',
-        badges
-      })
-    })
-    .catch(next)
-}
-
-const getAllBadges = (req, res, next) => {
-  console.log('AAA')
-  Badge.findAll()
-    .then(badges => {
-      res.json({
-        ok: true,
-        message: 'Badges found',
-        badges
-      })
-    })
-    .catch(next)
-}
-
-const getAllGroups = (req, res, next) => {
-  console.log('getAllGroups')
-  Group.findAll()
-    .then(groups => {
-      res.json({
-        ok: true,
-        message: 'Groups found',
-        groups
-      })
-    })
-    .catch(next)
-}
-
-const getAllEvents = (req, res, next) => {
-  console.log('getAllEvents')
-  Event.findAll()
-    .then(events => {
-      res.json({
-        ok: true,
-        message: 'Event found',
-        events
-      })
-    })
-    .catch(next)
-}
-
 const getInfoByFirebaseId = (req, res, next) => {
   const idFirebase = req.params.id
   User.findNickByFirebaseId(idFirebase)
@@ -156,20 +93,6 @@ const getInfoByFirebaseId = (req, res, next) => {
     .catch(next)
 }
 
-
-/* const putUser = (req, res, next) => {
-  const userId = req.params.id
-  const props = req.body.user
-
-  User.update(userId, props)
-    .then(user => res.json({
-      ok: true,
-      message: 'User updated',
-      user
-    }))
-    .catch(next)
-} */
-
 const deleteUser = (req, res, next) => {
   const userId = req.params.id
 
@@ -188,10 +111,6 @@ module.exports = {
   getUser,
   getNickByFirebaseId,
   getInfoByFirebaseId,
-  getBadgesByFirebaseId,
-  getAllBadges, // TODO MOVE TO CORRECT CONTROLLER
-  getAllGroups, // TODO MOVE TO CORRECT CONTROLLER
-  getAllEvents, // TODO MOVE TO CORRECT CONTROLLER
   updateUser,
   deleteUser
 }

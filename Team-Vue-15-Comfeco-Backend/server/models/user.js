@@ -15,25 +15,6 @@ const selectableProps = [
   'updated_at',
   'created_at'
 ]
-
-// Bcrypt functions used for hashing password and later verifying it.
-/* const SALT_ROUNDS = 10
-const hashPassword = password => bcrypt.hash(password, SALT_ROUNDS)
-const verifyPassword = (password, hash) => bcrypt.compare(password, hash) */
-
-// Always perform this logic before saving to db. This includes always hashing
-// the password field prior to writing so it is never saved in plain text.
-/* const beforeSave = user => {
-  console.log('USER')
-  console.log(user)
-  if (!user.password) return Promise.resolve(user)
-
-  // `password` will always be hashed before being saved.
-  return hashPassword(user.password)
-    .then(hash => ({ ...user, password: hash }))
-    .catch(err => `Error hashing password: ${ err }`)
-} */
-
 module.exports = knex => {
   const guts = createGuts({
     knex,
@@ -43,17 +24,14 @@ module.exports = knex => {
   })
 
   // Augment default `create` function to include custom `beforeSave` logic.
-  const create = user => guts.create(user)
-
+  const create = user => guts.create(user);
   const updateUser = user => { 
-      console.log('updateUser model')
-      console.log(user)
       return knex('users')
       .where({ id_firebase: user.id_firebase })
       .update({ username: user.username,
                 password: user.password ? user.password : undefined,
                 email: user.email ? user.email : undefined,
-                image: user.image ? user.password : undefined,
+                image: user.image ? user.image : undefined,
                 genre: user.genre ? user.genre : undefined,
                 birthdate: user.birthdate ? user.birthdate : undefined,
                 country: user.country ? user.country : undefined,
@@ -65,16 +43,12 @@ module.exports = knex => {
                 twitter: user.twitter ? user.twitter : undefined
             }).then(function (data) {
               // transaction suceeded, data written
-              console.log('then')
-              console.log(data)
               knex.select()
               .from('users_badges')
               .where({ id_user:  data })
               .timeout(guts.timeout)
               .then(user_badges => {
                 if (!user_badges) throw matchErrorMsg
-                console.log('user_badges')
-                console.log(user_badges)
                 // if he does not have the badge 1 then we check if he have all the fields and add it
                 const badgeSociable = user_badges.find( (badge) => {
                   return badge.id_badge === 1
@@ -87,23 +61,16 @@ module.exports = knex => {
                   .timeout(guts.timeout)
                   .then(user => {
                     if (!user) throw matchErrorMsg
-                    console.log('user+++')
-                    console.log(user)
                     if (user[0].biography !== null && user[0].birthdate !== null && user[0].country !== null && user[0].email !== null &&
                       user[0].facebook !== null && user[0].genre !== null && user[0].github !== null && user[0].linkedin !== null &&
-                      user[0].twitter !== null && user[0].username !== null) { // TODO still need to add some fields
-                      console.log('ADDING BADGE TO USER')
-                      console.log(data)
-
+                      user[0].twitter !== null && user[0].username !== null) {
                       knex('users_badges')
                       .insert({ 
                         id_user: data,
                         id_badge: 1 // the badge id predefined for Sociable
-                       }).then(result => {
-                         console.log('result')
-                         console.log(result)
-                       })
-                       // TODO handle error
+                      }).then(result => {
+                        console.log(result)
+                      })
                     }
                   })
                 }
@@ -113,8 +80,6 @@ module.exports = knex => {
 
             })
             .catch(function (error) {
-              // transaction failed, data rolled back
-              console.log('then 2')
               console.log(error)
             });
       // Por el momento 4 inserts o updates condicionales dependiendo de si mandan in id

@@ -24,9 +24,21 @@ module.exports = knex => {
   })
 
   const create = props => guts.create(props)
+  const findAll = () => {
+    const matchErrorMsg = "Username or password do not match";
 
+    return knex
+      .select()
+      .from(tableName)
+      .timeout(guts.timeout)
+      .then(groups => {
+        if (!groups) throw matchErrorMsg;
+        return groups;
+      });
+  };
   return {
     ...guts,
-    create
-  }
+    create,
+    findAll
+  };
 }
