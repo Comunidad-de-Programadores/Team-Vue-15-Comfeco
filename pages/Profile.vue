@@ -91,7 +91,6 @@ export default {
     async getGroups() {
       const request = await this.$axios.$get(`http://localhost:3001/groups/groupsAll`);
       this.groups = request.groups;
-      console.log(this.groups);
     },
     async getMyEvents() {
       const resp = await this.$axios.$get(
@@ -106,11 +105,9 @@ export default {
       const resp = await this.$axios.$get(
         'http://localhost:3001/users/info/' + this.$fire.auth.currentUser.uid
       );
-      console.log('BADGES EVENT', resp);
       const request = await this.$axios.$get(
         `http://localhost:3001/users/badges/` + resp.user.id_firebase
       );
-      console.log('BADGES FOUND', request);
       this.myBadges = request.badges;
     },
   },

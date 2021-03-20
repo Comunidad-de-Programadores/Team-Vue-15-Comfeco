@@ -185,7 +185,6 @@ export default {
       this.twitter = resp.user.twitter || '';
     },
     async saveChanges() {
-      console.log(this.file);
       if (this.file !== null && this.image != '') {
         this.image = await this.uploadImage();
       }
@@ -203,7 +202,6 @@ export default {
           await user.updateEmail(this.email);
         }
       }
-      console.log(this.image);
       await this.$axios.$put('http://localhost:3001/users', {
         id_firebase: this.id_firebase,
         username: this.username !== '' ? this.username : undefined,

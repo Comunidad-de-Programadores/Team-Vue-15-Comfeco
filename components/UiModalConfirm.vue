@@ -31,9 +31,6 @@ export default {
       type: String,
     },
   },
-  created() {
-    console.log('Modal');
-  },
   data() {
     return {};
   },

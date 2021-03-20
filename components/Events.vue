@@ -51,7 +51,6 @@ export default {
         const resp = await this.$axios.$get(
           'http://localhost:3001/users/info/' + this.$fire.auth.currentUser.uid
         );
-        console.log(resp.user);
         const infoEventUser = {
           id_user: resp.user.id,
           id_event: event.id,

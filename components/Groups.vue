@@ -168,7 +168,6 @@ export default {
   },
   created() {
     this.getGroupsName();
-    console.log('PROPS', this.groups);
     this.items = this.groups;
   },
   watch: {

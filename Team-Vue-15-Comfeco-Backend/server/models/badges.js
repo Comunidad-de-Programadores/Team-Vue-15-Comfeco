@@ -35,7 +35,6 @@ module.exports = knex => {
       .timeout(guts.timeout)
       .then(badges => {
         if (!badges) throw matchErrorMsg
-        console.log('BADGES')
         return badges
       })
   }
