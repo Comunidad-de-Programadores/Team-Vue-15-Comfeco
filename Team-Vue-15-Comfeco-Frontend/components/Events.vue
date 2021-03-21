@@ -49,13 +49,13 @@ export default {
     async participateEvent(event) {
       try {
         const resp = await this.$axios.$get(
-          'http://localhost:3001/users/info/' + this.$fire.auth.currentUser.uid
+          'http://54.80.141.168/api/users/info/' + this.$fire.auth.currentUser.uid
         );
         const infoEventUser = {
           id_user: resp.user.id,
           id_event: event.id,
         };
-        await this.$axios.$post('http://localhost:3001/events', infoEventUser);
+        await this.$axios.$post('http://54.80.141.168/api/events', infoEventUser);
         this.messageConfirm = 'Guardado en tus eventos';
         this.dialog = true;
       } catch (error) {

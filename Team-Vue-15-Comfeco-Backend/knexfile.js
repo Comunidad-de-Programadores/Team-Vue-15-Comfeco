@@ -7,10 +7,10 @@ module.exports = {
     client: 'mysql',
     connection: {
       port: 3306,
-      host: 'localhost',
+      host: 'database-1.c1g3efmxal0u.us-east-1.rds.amazonaws.com',
       database: 'comfeco',
-      user: 'root',
-      password: 'password',
+      user: 'admin',
+      password: '1CGdKrn0e7qYbuS0UcXz',
     },
     migrations: {
       tableName: 'knex_migrations',
@@ -40,10 +40,10 @@ module.exports = {
     client: 'mysql',
     connection: {
       port: 3306,
-      host: 'localhost',
+      host: 'database-1.c1g3efmxal0u.us-east-1.rds.amazonaws.com',
       database: 'comfeco',
-      user: 'root',
-      password: 'password',
+      user: 'admin',
+      password: '1CGdKrn0e7qYbuS0UcXz',
     },
     migrations: {
       tableName: 'knex_migrations',
