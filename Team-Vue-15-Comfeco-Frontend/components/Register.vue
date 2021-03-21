@@ -115,7 +115,7 @@ export default {
   },
   methods: {
     async registerUser() {
-      const res = await this.$axios.$get('http://54.80.141.168/api/users');
+      const res = await this.$axios.$get('http://localhost:3001/users');
       const nick = res.users.filter(
         (user) => user.username.toUpperCase() === this.nick.toUpperCase()
       );
@@ -124,12 +124,12 @@ export default {
       } else {
         if (this.password === this.passwordConfirm) {
           try {
-            await this.$axios.$get('http://54.80.141.168/api/users');
+            await this.$axios.$get('http://localhost:3001/users');
             const user = await firebase
               .auth()
               .createUserWithEmailAndPassword(this.email, this.password);
             const { uid } = user.user;
-            await this.$axios.$post('http://54.80.141.168/api/register', {
+            await this.$axios.$post('http://localhost:3001/register', {
               username: this.nick,
               password: this.password,
               email: this.email,
