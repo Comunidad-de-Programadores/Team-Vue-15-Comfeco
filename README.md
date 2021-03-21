@@ -2,7 +2,7 @@
 
 <div align="center">
   <h3>
-    <a href="http://54.80.141.168:3000/" target="_blank" >
+    <a href="http://54.80.141.168/" target="_blank" >
       Proyecto Team-Vue-15-ComfecO
     </a>
   </h3>
