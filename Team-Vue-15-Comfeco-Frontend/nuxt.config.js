@@ -1,7 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  target: 'static',
+  server: {
+    host: '0' // default: localhost
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: "%s - Team-Vue-15-Comfeco",
