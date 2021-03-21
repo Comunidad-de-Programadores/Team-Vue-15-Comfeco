@@ -81,32 +81,32 @@ export default {
       this.$forceUpdate();
     },
     async getBadges() {
-      const request = await this.$axios.$get(`http://54.80.141.168/api/badges/badgesAll`);
+      const request = await this.$axios.$get(`http://54.80.141.168:3001/badges/badgesAll`);
       this.badges = request.badges;
     },
     async getEvents() {
-      const request = await this.$axios.$get(`http://54.80.141.168/api/events/eventsAll`);
+      const request = await this.$axios.$get(`http://54.80.141.168:3001/events/eventsAll`);
       this.events = request.events;
     },
     async getGroups() {
-      const request = await this.$axios.$get(`http://54.80.141.168/api/groups/groupsAll`);
+      const request = await this.$axios.$get(`http://54.80.141.168:3001/groups/groupsAll`);
       this.groups = request.groups;
     },
     async getMyEvents() {
       const resp = await this.$axios.$get(
-        'http://54.80.141.168/api/users/info/' + this.$fire.auth.currentUser.uid
+        'http://54.80.141.168:3001/users/info/' + this.$fire.auth.currentUser.uid
       );
       const request = await this.$axios.$get(
-        `http://54.80.141.168/api/events/events/` + resp.user.id
+        `http://54.80.141.168:3001/events/events/` + resp.user.id
       );
       this.myEvents = request.events;
     },
     async getMyBadges() {
       const resp = await this.$axios.$get(
-        'http://54.80.141.168/api/users/info/' + this.$fire.auth.currentUser.uid
+        'http://54.80.141.168:3001/users/info/' + this.$fire.auth.currentUser.uid
       );
       const request = await this.$axios.$get(
-        `http://54.80.141.168/api/users/badges/` + resp.user.id_firebase
+        `http://54.80.141.168:3001/users/badges/` + resp.user.id_firebase
       );
       this.myBadges = request.badges;
     },

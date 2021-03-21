@@ -67,11 +67,11 @@ export default {
   methods: {
     async recoverPassword() {
       try {
-        const res = await this.$axios.$get('http://54.80.141.168/api/users');
+        const res = await this.$axios.$get('http://54.80.141.168:3001/users');
         const user = res.users.filter((user) => user.email === this.email);
         if (user.length != 0) {
           const actionCodeSettings = {
-            url: 'http://54.80.141.168/api/',
+            url: 'http://54.80.141.168:3001/',
             handleCodeInApp: false,
           };
           this.$fire.auth.sendPasswordResetEmail(this.email, actionCodeSettings);

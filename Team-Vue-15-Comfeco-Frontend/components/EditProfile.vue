@@ -169,7 +169,7 @@ export default {
     },
     async getInfoUser() {
       const resp = await this.$axios.$get(
-        'http://54.80.141.168/api/users/info/' + this.id_firebase
+        'http://54.80.141.168:3001/users/info/' + this.id_firebase
       );
       this.username = resp.user.username || '';
       this.email = resp.user.email || '';
@@ -202,7 +202,7 @@ export default {
           await user.updateEmail(this.email);
         }
       }
-      await this.$axios.$put('http://54.80.141.168/api/users', {
+      await this.$axios.$put('http://54.80.141.168:3001/users', {
         id_firebase: this.id_firebase,
         username: this.username !== '' ? this.username : undefined,
         password: this.password !== '' ? this.password : undefined,

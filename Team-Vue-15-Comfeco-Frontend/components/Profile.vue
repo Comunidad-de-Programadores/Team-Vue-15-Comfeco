@@ -175,7 +175,7 @@ export default {
         const { uid } = this.$fire.auth.currentUser;
         localStorage.setItem('id_firebase', uid);
         const id = await localStorage.getItem('id_firebase');
-        const result = await this.$axios.$get('http://54.80.141.168/api/users/info/' + id);
+        const result = await this.$axios.$get('http://54.80.141.168:3001/users/info/' + id);
         const user = result.user;
         this.nickname = user.username;
         this.biography = user.biography;
